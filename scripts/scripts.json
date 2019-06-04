@@ -1,5 +1,11 @@
 {
     "scripts": {
+        "game": [
+            "world.js"
+        ],
+        "game/objects": [
+            "ground.js"
+        ]
         "": [
             "main.js"
         ]
