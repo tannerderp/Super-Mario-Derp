@@ -9,7 +9,7 @@ world.run = function(){
     background(255, 255, 255);
     this.player.run();
     for(var i in this.blocks){
-        this.blocks[i].run();
+        this.blocks[i].run(this.player);
     }
 }
 world.getObject = function(character){
