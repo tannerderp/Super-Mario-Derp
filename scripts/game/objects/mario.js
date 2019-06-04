@@ -32,6 +32,7 @@ Mario.prototype.update = function(){
     } else{
         this.img = imgs.mario.walk[round(this.frame/2)];
     }
+    this.w = this.img.width * 1.16666666;
     this.yvel += 0.2;
     this.y += this.yvel;
     this.yvel = constrain(this.yvel, -10, 5);
