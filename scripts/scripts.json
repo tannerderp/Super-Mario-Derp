@@ -5,7 +5,7 @@
         ],
         "game/objects": [
             "ground.js"
-        ]
+        ],
         "": [
             "main.js"
         ]

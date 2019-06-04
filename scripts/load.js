@@ -1,11 +1,11 @@
 var scripts;
 var load = {
         amount: 0,
-        needed: 0
+        needed: 0,
+        done: false,
 };
 $.getJSON("/scripts/scripts.json", function(jsonData){
     scripts = jsonData.scripts;
-
     for(var i in scripts){
         for(var j = 0; j < scripts[i].length; j ++){
             load.needed++;
@@ -13,6 +13,7 @@ $.getJSON("/scripts/scripts.json", function(jsonData){
                 load.amount ++;
                 if(load.amount >= load.needed){
                     new p5();
+                    load.done = true;
                 }
             });
         }

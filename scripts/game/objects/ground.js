@@ -1,8 +1,8 @@
 function Ground(x, y){
     this.x = x;
     this.y = y;
-    this.w = 32;
-    this.h = 32;
+    this.w = 48;
+    this.h = 48;
 }
 Ground.prototype.run = function(){
     this.display();
