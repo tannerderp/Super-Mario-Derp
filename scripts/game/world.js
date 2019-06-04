@@ -7,6 +7,7 @@ $.getJSON("/scripts/game/levels.json", function(json){
 })
 world.run = function(){
     background(255, 255, 255);
+    this.player.run();
     for(var i in this.blocks){
         this.blocks[i].run();
     }
@@ -14,6 +15,7 @@ world.run = function(){
 world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
+        case "M": return "player"; break;
         default: return null; break;
     }
 }
@@ -25,15 +27,15 @@ world.load = function(map){
             let x = j * 48;
             let y = i * 48;
             let o = this.getObject(c);
-            if(o){
+            if(o === "player"){
+                this.player = new Mario(x, y);
+            } else if(o){
                 this.blocks.push(new (o)(x, y));
             }
         }
     }
 }
 world.init = function(){
-    if(load.done){
-        this.load(this.levels[0].map);
-        scene = "game";
-    }
+    this.load(this.levels[0].map);
+    scene = "game";
 }

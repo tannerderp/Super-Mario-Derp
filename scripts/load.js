@@ -1,24 +1,4 @@
-var scripts;
-var load = {
-        amount: 0,
-        needed: 0,
-        done: false,
-};
-$.getJSON("/scripts/scripts.json", function(jsonData){
-    scripts = jsonData.scripts;
-    for(var i in scripts){
-        for(var j = 0; j < scripts[i].length; j ++){
-            load.needed++;
-            loadScript("/scripts/"+i+"/"+scripts[i][j], function(){
-                load.amount ++;
-                if(load.amount >= load.needed){
-                    new p5();
-                    load.done = true;
-                }
-            });
-        }
-    }
-});
+let scripts = ["/load/load", "/game/objects/ground", "/game/objects/mario", "/game/world"];
 function loadScript(url, callback) {
     // Adding the script tag to the head as suggested before
     var body = document.querySelector("body");
@@ -35,3 +15,7 @@ function loadScript(url, callback) {
     // Fire the loading
     body.appendChild(script);
 };
+for(var i in scripts){
+    loadScript("/scripts/"+scripts[i]+".js");
+}
+loadScript("/scripts/main.js");

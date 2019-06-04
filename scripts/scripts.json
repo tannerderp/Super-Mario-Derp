@@ -1,10 +1,14 @@
 {
     "scripts": {
+        "load": [
+            "load.js"
+        ],
         "game": [
             "world.js"
         ],
         "game/objects": [
-            "ground.js"
+            "ground.js",
+            "mario.js"
         ],
         "": [
             "main.js"
