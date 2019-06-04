@@ -1,6 +1,7 @@
 let world = {
     blocks: [],
     levels: [],
+    objects: [],
 }
 $.getJSON("/scripts/game/levels.json", function(json){
     world.levels = json.levels;
@@ -8,6 +9,9 @@ $.getJSON("/scripts/game/levels.json", function(json){
 world.run = function(){
     background(255, 255, 255);
     this.player.run();
+    for(var i in this.objects){
+        this.objects[i].run();
+    }
     for(var i in this.blocks){
         this.blocks[i].run(this.player);
     }
@@ -16,11 +20,13 @@ world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
         case "M": return "player"; break;
+        case "G": return ["enemy", Goomba]; break
         default: return null; break;
     }
 }
 world.load = function(map){
     this.blocks = [];
+    this.objects = [];
     for(var i in map){
         for(var j in map[i]){
             let c = map[i][j];
@@ -29,7 +35,9 @@ world.load = function(map){
             let o = this.getObject(c);
             if(o === "player"){
                 this.player = new Mario(x, y);
-            } else if(o){
+            } else if(Array.isArray(o)){
+                this.objects.push(new (o[1])(x, y));
+            }else if(o){
                 this.blocks.push(new (o)(x, y));
             }
         }

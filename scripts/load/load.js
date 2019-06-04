@@ -7,6 +7,9 @@ function preload(){
     }
     imgs.mario.jump = loadImage("/sprites/mario/BSMW4.png");
     imgs.mario.fall = loadImage("/sprites/mario/BSMW5.png");
+    imgs.goomba = {};
+    imgs.goomba.idle = loadImage("/sprites/goomba/Goomba.png");
+    imgs.goomba.dead = loadImage("/sprites/goomba/Dead Goomba.png");
 }
 let keys = {};
 keyPressed = function(){
