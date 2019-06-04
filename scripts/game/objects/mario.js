@@ -34,7 +34,7 @@ Mario.prototype.update = function(){
     }
     this.yvel += 0.2;
     this.y += this.yvel;
-    this.yvel = constrain(this.yvel, -10, 5);
+    this.yvel = constrain(this.yvel, -10, 6.5);
     this.xvel *= 0.9;
     this.x += this.xvel;
 }
