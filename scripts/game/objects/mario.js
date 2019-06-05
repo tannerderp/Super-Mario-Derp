@@ -67,7 +67,7 @@ Mario.prototype.update = function(){
     } else{
         this.img = imgs.mario.walk[round(this.frame/2)];
     }
-    if(!this.grounded) this.yvel += 0.2;
+    if(!this.grounded) this.yvel += 0.225;
     this.y += this.yvel;
     this.yvel = constrain(this.yvel, -10, 8);
     this.xvel *= 0.9;
@@ -106,7 +106,7 @@ Mario.prototype.control = function(){
     if((keys[UP_ARROW]||keys.w)&&this.grounded){
         this.y --;
         sounds.mario.jump.play();
-        this.yvel = -8;
+        this.yvel = -10;
     }
 }
 Mario.prototype.display = function(){

@@ -15,7 +15,7 @@ world.run = function(){
         translate(-this.player.x+width/2, 0);
     }
     this.player.run();
-    for(var i in this.objects){
+    for(var i = this.objects.length-1; i>=0; i--){
         this.objects[i].run(this.player);
         if(this.objects[i].dead){
             this.objects.splice(i, 1);
@@ -31,7 +31,8 @@ world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
         case "M": return "player"; break;
-        case "G": return ["enemy", Goomba]; break
+        case "G": return ["enemy", Goomba]; break;
+        case "K": return ["enemy", Koopa]; break;
         default: return null; break;
     }
 }

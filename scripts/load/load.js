@@ -13,6 +13,13 @@ function preload(){
     imgs.goomba = {};
     imgs.goomba.idle = loadImage("/sprites/goomba/Goomba.png");
     imgs.goomba.dead = loadImage("/sprites/goomba/Dead Goomba.png");
+    imgs.koopa = {};
+    imgs.koopa.idle = Array(2);
+    for(var i = 0; i<2; i++){
+        imgs.koopa.idle[i] = loadImage("/sprites/koopa/koopa"+(i+1)+".png");
+    }
+    imgs.koopa.shell = loadImage("/sprites/koopa/koopa shell.png");
+
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};
