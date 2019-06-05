@@ -38,11 +38,12 @@ Koopa.prototype.collide = function(p){
         }
     }
     if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
-        if(p.yvel>0.2){
+        if(p.y+p.h/2>this.y-this.h/2&&p.y+p.h/2<this.y){
             this.dead = true;
             p.yvel = -8;
             p.y = this.y-this.h/2-p.h/2-1;
             sounds.enemy.squash.play();
+            world.shells.push(new Shell(this.x, this.y));
         } else{
             if(!p.hurt){
                 p.damage();

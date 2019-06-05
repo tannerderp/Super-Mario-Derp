@@ -1,4 +1,4 @@
-let scripts = ["/load/load", "/game/objects/ground", "/game/objects/mario", "/game/objects/goomba", "/game/objects/koopa", "/game/world"];
+let scripts = ["/load/load", "/game/objects/ground", "/game/objects/mario", "/game/objects/goomba", "/game/objects/shell", "/game/objects/koopa", "/game/world"];
 function loadScript(url, callback) {
     // Adding the script tag to the head as suggested before
     var body = document.querySelector("body");
