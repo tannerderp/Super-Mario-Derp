@@ -9,6 +9,11 @@ $.getJSON("/scripts/game/levels.json", function(json){
 world.run = function(){
     background(255, 255, 255);
     push();
+    if(this.player.x>this.levelLength-width/2){
+        translate(-this.levelLength+width, 0);
+    }else if(this.player.x>width/2){
+        translate(-this.player.x+width/2, 0);
+    }
     this.player.run();
     for(var i in this.objects){
         this.objects[i].run(this.player);
@@ -46,6 +51,7 @@ world.load = function(map){
             }else if(o){
                 this.blocks.push(new (o)(x, y));
             }
+            this.levelLength = map[i].length*48;
         }
     }
 }
