@@ -1,6 +1,6 @@
 let scene = "gameLoad";
 function setup(){
-    createCanvas(1600, 900);
+    createCanvas(windowWidth, windowHeight);
 }
 function draw(){
     switch(scene){

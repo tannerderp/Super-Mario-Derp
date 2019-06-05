@@ -7,12 +7,39 @@ function Mario(x, y){
     this.yvel = 0;
     this.frame = 0;
     this.frameChange = 1;
+    this.health = 3;
+    this.show = true;
+    this.hurtCooldown = 0;
 }
 Mario.prototype.run = function(){
     this.update();
     this.control();
-    this.display();
+    if(this.show){
+        this.display();
+    }
     this.grounded = false;
+}
+Mario.prototype.displayHealth = function(x, y){
+    push();
+    translate(x, y);
+    switch(this.health){
+        case 3: fill(11, 49, 239); break;
+        case 2: fill(242, 208, 16); break;
+        case 1: fill(204, 12, 12); break;
+        case 0: fill(0, 0, 0); break;
+    }
+    ellipse(0, 0, 100, 100);
+    textFont(fonts.mario);
+    fill(0, 0, 0);
+    textSize(80);
+    textAlign(CENTER, CENTER);
+    text(this.health, 0, 0);
+    pop();
+}
+Mario.prototype.damage = function(){
+    this.health --;
+    sounds.mario.hurt.play();
+    this.hurt = true;
 }
 Mario.prototype.update = function(){
     if(this.xvel>0.42||this.xvel<-0.42){
@@ -34,21 +61,37 @@ Mario.prototype.update = function(){
     }
     this.yvel += 0.2;
     this.y += this.yvel;
-    this.yvel = constrain(this.yvel, -10, 6.5);
+    this.yvel = constrain(this.yvel, -10, 8);
     this.xvel *= 0.9;
     this.x += this.xvel;
+    if(this.hurt){
+        if(frameCount%5===0){
+            if(this.show){
+                this.show = false;
+            } else{
+                this.show = true;
+            }
+        }
+        this.hurtCooldown ++;
+        if(this.hurtCooldown>100){
+            this.hurt = false;
+            this.hurtCooldown = 0;
+            this.show = true;
+        }
+    }
 }
 Mario.prototype.control = function(){
     if(keys[RIGHT_ARROW]||keys.d){
-        this.xvel += 0.42;
+        this.xvel += 0.45;
         this.direction = 1;
     }
     if(keys[LEFT_ARROW]||keys.a){
-        this.xvel -= 0.42;
+        this.xvel -= 0.45;
         this.direction = -1;
     }
     if((keys[UP_ARROW]||keys.w)&&this.grounded){
         this.y --;
+        sounds.mario.jump.play();
         this.yvel = -8;
     }
 }

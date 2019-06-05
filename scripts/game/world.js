@@ -8,13 +8,19 @@ $.getJSON("/scripts/game/levels.json", function(json){
 })
 world.run = function(){
     background(255, 255, 255);
+    push();
     this.player.run();
     for(var i in this.objects){
-        this.objects[i].run();
+        this.objects[i].run(this.player);
+        if(this.objects[i].dead){
+            this.objects.splice(i, 1);
+        }
     }
     for(var i in this.blocks){
         this.blocks[i].run(this.player);
     }
+    pop();
+    this.player.displayHealth(width-55, 55);
 }
 world.getObject = function(character){
     switch(character){

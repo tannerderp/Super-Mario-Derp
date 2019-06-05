@@ -8,12 +8,20 @@ function Goomba(x,y){
     this.yvel = 0;
     this.direction = 1;
 }
-Goomba.prototype.run = function(){
-    this.update();
-    this.collide();
+Goomba.prototype.run = function(p){
+    if(this.deadWait>0){
+        this.deadWait ++;
+        this.img = imgs.goomba.dead;
+        if(this.deadWait>30){
+            this.dead = true;
+        }
+    } else{
+        this.update();
+        this.collide(p);
+    }
     this.display();
 }
-Goomba.prototype.collide = function(){
+Goomba.prototype.collide = function(p){
     let xvel = abs(this.speed);
     let yvel = abs(this.yvel)
     for(var i in world.blocks){
@@ -33,6 +41,19 @@ Goomba.prototype.collide = function(){
     				this.speed *= -1;
     			}
     		}
+        }
+    }
+    if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
+        if(p.yvel>=0){
+            this.y += this.h/4;
+            this.deadWait = 1;
+            p.yvel = -8;
+            p.y = this.y-this.h/2-p.h/2-1;
+            sounds.enemy.squash.play();
+        } else{
+            if(!p.hurt){
+                p.damage();
+            }
         }
     }
 }

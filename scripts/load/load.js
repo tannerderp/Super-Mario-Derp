@@ -1,5 +1,8 @@
 let imgs = {};
+let fonts = {};
+let sounds = {};
 function preload(){
+    //load images
     imgs.mario = {};
     imgs.mario.walk = Array(3);
     for(var i = 0; i<3; i++){
@@ -10,6 +13,15 @@ function preload(){
     imgs.goomba = {};
     imgs.goomba.idle = loadImage("/sprites/goomba/Goomba.png");
     imgs.goomba.dead = loadImage("/sprites/goomba/Dead Goomba.png");
+    //load sounds
+    soundFormats('mp3', 'wav');
+    sounds.mario = {};
+    sounds.mario.jump = loadSound("/sounds/Mario_Jump.wav");
+    sounds.mario.hurt = loadSound("/sounds/Mario_Hurt.wav");
+    sounds.enemy = {};
+    sounds.enemy.squash = loadSound("/sounds/Stomp.wav");
+    //load fonts
+    fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }
 let keys = {};
 keyPressed = function(){
