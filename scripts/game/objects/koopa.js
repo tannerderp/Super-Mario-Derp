@@ -43,7 +43,7 @@ Koopa.prototype.collide = function(p){
             p.yvel = -8;
             p.y = this.y-this.h/2-p.h/2-1;
             sounds.enemy.squash.play();
-            world.shells.push(new Shell(this.x, this.y));
+            world.objects.push(new Shell(this.x, this.y));
         } else{
             if(!p.hurt){
                 p.damage();

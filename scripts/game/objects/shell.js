@@ -7,6 +7,7 @@ function Shell(x, y, s, img){
     this.h = this.s * this.img.height;
     this.speed = 0;
     this.yvel = 0;
+    this.isShell = true; //so enemies can do collisions
 }
 Shell.prototype.run = function(p){
     this.display();
