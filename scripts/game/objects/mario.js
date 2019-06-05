@@ -44,9 +44,17 @@ Mario.prototype.damage = function(){
 Mario.prototype.update = function(){
     if(this.xvel>0.42||this.xvel<-0.42){
         if(this.frame>=4){
-            this.frameChange = -0.25;
+            if(this.running){
+                this.frameChange = -0.3333333333;
+            } else{
+                this.frameChange = -0.25;
+            }
         } else if(this.frame<=0){
-            this.frameChange = 0.25;
+            if(this.running){
+                this.frameChange = 0.3333333333;
+            } else{
+                this.frameChange = 0.25;
+            }
         }
         this.frame += this.frameChange;
     } else{
@@ -59,7 +67,7 @@ Mario.prototype.update = function(){
     } else{
         this.img = imgs.mario.walk[round(this.frame/2)];
     }
-    this.yvel += 0.2;
+    if(!this.grounded) this.yvel += 0.2;
     this.y += this.yvel;
     this.yvel = constrain(this.yvel, -10, 8);
     this.xvel *= 0.9;
@@ -81,12 +89,18 @@ Mario.prototype.update = function(){
     }
 }
 Mario.prototype.control = function(){
+    this.running = false;
+    if(keys.z || keys[32] || keys.x){
+        this.running = true;
+    }
     if(keys[RIGHT_ARROW]||keys.d){
         this.xvel += 0.45;
+        if(this.running) this.xvel += 0.1;
         this.direction = 1;
     }
     if(keys[LEFT_ARROW]||keys.a){
         this.xvel -= 0.45;
+        if(this.running) this.xvel -= 0.1;
         this.direction = -1;
     }
     if((keys[UP_ARROW]||keys.w)&&this.grounded){

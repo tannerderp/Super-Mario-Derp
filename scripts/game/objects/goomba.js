@@ -44,7 +44,7 @@ Goomba.prototype.collide = function(p){
         }
     }
     if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
-        if(p.yvel>=0){
+        if(p.yvel>0.2){
             this.y += this.h/4;
             this.deadWait = 1;
             p.yvel = -8;
