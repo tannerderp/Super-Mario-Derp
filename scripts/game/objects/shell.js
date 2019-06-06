@@ -1,6 +1,7 @@
-function Shell(x, y, s, img){
+function Shell(x, y, type, s, img){
     this.x = x;
     this.y = y;
+    this.type = type || false;
     this.img = img || imgs.koopa.shell;
     this.s = s || 48/this.img.width; //scale factor
     this.w = 48;
@@ -8,6 +9,7 @@ function Shell(x, y, s, img){
     this.speed = 0;
     this.yvel = 0;
     this.isShell = true; //so enemies can do collisions
+    this.wait = 0;
 }
 Shell.prototype.run = function(p){
     this.display();
@@ -38,6 +40,9 @@ Shell.prototype.collide = function(p){
     }
     if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
         if(p.y+p.h/2>this.y-this.h/2&&p.y+p.h/2<this.y){
+            if(this.speed !== 0){
+                this.wait = 0;
+            }
             this.speed = 0;
             p.y = this.y-this.h/2-p.h/2-1;
             p.yvel = -8;
@@ -63,6 +68,13 @@ Shell.prototype.update = function(){
     this.y += this.yvel;
     this.yvel += 0.225;
     this.x += this.speed;
+    if(this.speed === 0 && this.type){
+        this.wait ++;
+    }
+    if(this.wait > 600){
+        this.dead = true;
+        world.objects.push(new (this.type)(this.x, this.y));
+    }
 }
 Shell.prototype.display = function(){
     push();
