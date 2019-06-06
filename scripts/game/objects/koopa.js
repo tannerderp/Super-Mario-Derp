@@ -4,7 +4,7 @@ function Koopa(x, y){
     this.img = imgs.koopa.idle[0];
     this.w = 40;
     this.h = 0.81632653061*imgs.koopa.idle[0].height;
-    this.speed = 3;
+    this.speed = 2.5;
     this.yvel = 0;
     this.frame = 0;
     this.direction = -1;
@@ -47,6 +47,20 @@ Koopa.prototype.collide = function(p){
         } else{
             if(!p.hurt){
                 p.damage();
+            }
+        }
+    }
+    for(var i in world.objects){
+        var o = world.objects[i];
+        if(o.x !== this.x && o.y !== this.y){ //check that it's not itself
+            if(this.x+this.w/2>o.x-o.w/2&&this.x-this.w/2<o.x+o.w/2&&this.y+this.h/2>o.y-o.h/2&&this.y-this.h/2<o.y+o.h/2){
+                if(o.isShell&&o.speed !== 0){
+                    this.dead = true;
+                    sounds.kick.play();
+                } else{
+                    this.speed *= -1;
+                    this.direction *= -1;
+                }
             }
         }
     }

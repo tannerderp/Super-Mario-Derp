@@ -27,6 +27,7 @@ function preload(){
     sounds.mario.hurt = loadSound("/sounds/Mario_Hurt.wav");
     sounds.enemy = {};
     sounds.enemy.squash = loadSound("/sounds/Stomp.wav");
+    sounds.kick = loadSound("/sounds/kick.wav");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

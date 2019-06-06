@@ -4,7 +4,7 @@ function Goomba(x,y){
     this.img = imgs.goomba.idle;
     this.w = 40;
     this.h = 40;
-    this.speed = -3;
+    this.speed = -2.5;
     this.yvel = 0;
     this.direction = 1;
 }
@@ -53,6 +53,19 @@ Goomba.prototype.collide = function(p){
         } else{
             if(!p.hurt){
                 p.damage();
+            }
+        }
+    }
+    for(var i in world.objects){
+        var o = world.objects[i];
+        if(o.x !== this.x && o.y !== this.y){ //check that it's not itself
+            if(this.x+this.w/2>o.x-o.w/2&&this.x-this.w/2<o.x+o.w/2&&this.y+this.h/2>o.y-o.h/2&&this.y-this.h/2<o.y+o.h/2){
+                if(o.isShell&&o.speed !== 0){
+                    this.dead = true;
+                    sounds.kick.play();
+                } else{
+                    this.speed *= -1;
+                }
             }
         }
     }
