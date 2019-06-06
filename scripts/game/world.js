@@ -30,6 +30,7 @@ world.run = function(){
 world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
+        case "%": return Brick; break;
         case "M": return "player"; break;
         case "G": return ["enemy", Goomba]; break;
         case "K": return ["enemy", Koopa]; break;

@@ -19,6 +19,7 @@ function preload(){
         imgs.koopa.idle[i] = loadImage("/sprites/koopa/koopa"+(i+1)+".png");
     }
     imgs.koopa.shell = loadImage("/sprites/koopa/koopa shell.png");
+    imgs.brick = loadImage("/sprites/Brick Block.PNG");
 
     //load sounds
     soundFormats('mp3', 'wav');
