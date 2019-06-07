@@ -14,6 +14,7 @@ world.run = function(){
     }else if(this.player.x>width/2){
         translate(-this.player.x+width/2, 0);
     }
+    this.displayBackground();
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
         this.objects[i].run(this.player);
@@ -36,6 +37,7 @@ world.getObject = function(character){
         case "%": return Brick; break;
         case "?": return ItemBlock; break;
         case "&": return MushroomItemBlock; break;
+        case "F": return FlagPole; break; //f in the chat
         case "M": return "player"; break;
         case "m": return ["item", Mushroom]; break;
         case "C": return ["item", Coin]; break;
@@ -46,9 +48,10 @@ world.getObject = function(character){
         default: return null; break;
     }
 }
-world.load = function(map){
+world.load = function(level){
     this.blocks = [];
     this.objects = [];
+    let map = level.map;
     for(var i in map){
         for(var j in map[i]){
             let c = map[i][j];
@@ -65,8 +68,22 @@ world.load = function(map){
             this.levelLength = map[i].length*48;
         }
     }
+    this.groundColor = level.groundColor;
+    this.topGroundColor = level.topGroundColor;
+    this.background = level.background;
+}
+world.displayBackground = function(){
+    for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
+        push();
+        imageMode(LEFT);
+        translate(i, 0);
+        scale(height/imgs.backgrounds[this.background].height);
+        image(imgs.backgrounds[this.background], 0, 0);
+        pop();
+    }
+
 }
 world.init = function(){
-    this.load(this.levels[0].map);
+    this.load(this.levels[0]);
     scene = "game";
 }

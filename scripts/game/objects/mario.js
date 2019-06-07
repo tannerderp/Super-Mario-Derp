@@ -11,10 +11,13 @@ function Mario(x, y){
     this.show = true;
     this.hurtCooldown = 0;
     this.coins = 0;
+    this.canMove = true;
 }
 Mario.prototype.run = function(){
     this.update();
-    this.control();
+    if(this.canMove){
+        this.control();
+    }
     if(this.show){
         this.display();
     }

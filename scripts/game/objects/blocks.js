@@ -40,8 +40,12 @@ Ground.prototype.collide = function(p){
 }
 Ground.prototype.display = function(){
     push();
-    fill(175, 118, 10);
-    rect(this.x, this.y, this.w, this.h);
+    translate(this.x, this.y);
+    fill(world.groundColor);
+    noStroke();
+    rect(0, 0, this.w, this.h);
+    fill(world.topGroundColor);
+    rect(0, 0, this.w, 10);
     pop();
 }
 }

@@ -35,6 +35,11 @@ function preload(){
     for(var i = 0; i<2; i++){
         imgs.pirahna[i] = loadImage("/sprites/pirahna/Pirahna"+(i+1)+".png");
     }
+    imgs.flagPole = loadImage("/sprites/flagpole.png");
+    imgs.backgrounds = Array(3); //all backgrounds MUST be 395 x 331
+    for(var i = 0; i<3; i++){
+        imgs.backgrounds[i] = loadImage("/sprites/Backgrounds/"+i+".png");
+    }
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};
@@ -44,6 +49,7 @@ function preload(){
     sounds.enemy.squash = loadSound("/sounds/Stomp.wav");
     sounds.kick = loadSound("/sounds/kick.wav");
     sounds.coin = loadSound("/sounds/coin.wav");
+    sounds.levelComplete = loadSound("/sounds/Level_Complete.mp3");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }
