@@ -20,7 +20,13 @@ function preload(){
     }
     imgs.koopa.shell = loadImage("/sprites/koopa/koopa shell.png");
     imgs.brick = loadImage("/sprites/Brick Block.PNG");
-
+    imgs.itemBlock = {};
+    imgs.itemBlock.idle = Array(4);
+    for(var i = 0; i<4; i++){
+        imgs.itemBlock.idle[i] = loadImage("/sprites/Item Block/Item Block"+(i+1)+".png");
+    }
+    imgs.itemBlock.hit = loadImage("/sprites/Item Block/Item Block Hit.png");
+    imgs.mushroom = loadImage("/sprites/mushroom.png");
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};

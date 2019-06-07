@@ -28,6 +28,9 @@ Ground.prototype.collide = function(p){
 			} else if(p.y+p.h/2>this.y+this.h){
 				p.y = this.y+this.h+p.h/2;
                 p.yvel *= -1;
+                if(this.bottomCollide){
+                    this.bottomCollide();
+                }
 			}
 		}
     }

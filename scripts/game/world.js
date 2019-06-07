@@ -31,7 +31,10 @@ world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
         case "%": return Brick; break;
+        case "?": return ItemBlock; break;
+        case "&": return MushroomItemBlock; break;
         case "M": return "player"; break;
+        case "m": return ["item", Mushroom]; break;
         case "G": return ["enemy", Goomba]; break;
         case "K": return ["enemy", Koopa]; break;
         case "S": return ["enemy", Shell]; break;
