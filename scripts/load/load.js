@@ -31,6 +31,10 @@ function preload(){
     imgs.pipe = {};
     imgs.pipe.top = loadImage("/sprites/Warp Pipe/Warp Pipe Top.png");
     imgs.pipe.bottom = loadImage("/sprites/Warp Pipe/Warp Pipe Bottom.png");
+    imgs.pirahna = Array(2);
+    for(var i = 0; i<2; i++){
+        imgs.pirahna[i] = loadImage("/sprites/pirahna/Pirahna"+(i+1)+".png");
+    }
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};

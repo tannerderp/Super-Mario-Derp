@@ -1,4 +1,4 @@
-//in order for object inheritance to work, these all have to be in the same script
+//in order for object inheritance to work 100% of the time, these all have to be in the same script
 //ground
 {
 function Ground(x, y){
