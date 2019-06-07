@@ -28,6 +28,9 @@ function preload(){
     imgs.itemBlock.hit = loadImage("/sprites/Item Block/Item Block Hit.png");
     imgs.mushroom = loadImage("/sprites/mushroom.png");
     imgs.coin = loadImage("/sprites/coin.png");
+    imgs.pipe = {};
+    imgs.pipe.top = loadImage("/sprites/Warp Pipe/Warp Pipe Top.png");
+    imgs.pipe.bottom = loadImage("/sprites/Warp Pipe/Warp Pipe Bottom.png");
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};

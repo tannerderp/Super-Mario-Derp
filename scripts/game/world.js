@@ -31,6 +31,8 @@ world.run = function(){
 world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
+        case "=": return Pipe; break;
+        case "|": return PipeBottom; break;
         case "%": return Brick; break;
         case "?": return ItemBlock; break;
         case "&": return MushroomItemBlock; break;

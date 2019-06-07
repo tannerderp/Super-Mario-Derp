@@ -32,6 +32,8 @@ function MushroomItemBlock(x, y){
 }
 MushroomItemBlock.prototype = Object.create(ItemBlock.prototype);
 MushroomItemBlock.prototype.bottomCollide = function(){
+    if(!this.hit){
+        world.objects.push(new Mushroom(this.x+this.w/2, this.y-this.h/2));
+    }
     this.hit = true;
-    world.objects.push(new Mushroom(this.x+this.w/2, this.y-this.h/2));
 }
