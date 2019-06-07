@@ -10,6 +10,7 @@ function Mario(x, y){
     this.health = 3;
     this.show = true;
     this.hurtCooldown = 0;
+    this.coins = 0;
 }
 Mario.prototype.run = function(){
     this.update();
@@ -34,6 +35,22 @@ Mario.prototype.displayHealth = function(x, y){
     textSize(80);
     textAlign(CENTER, CENTER);
     text(this.health, 0, 0);
+    pop();
+}
+Mario.prototype.displayCoins = function(x, y){
+    push();
+    translate(x, y);
+    push();
+    scale(0.125);
+    imageMode(CENTER);
+    image(imgs.coin, 0, 0);
+    pop();
+    textSize(40);
+    fill(0, 0, 0);
+    textAlign(CENTER);
+    textFont(fonts.mario);
+    text(" : ", 20, 10);
+    text(this.coins, 50, 15);
     pop();
 }
 Mario.prototype.damage = function(){

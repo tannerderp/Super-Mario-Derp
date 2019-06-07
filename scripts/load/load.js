@@ -27,6 +27,7 @@ function preload(){
     }
     imgs.itemBlock.hit = loadImage("/sprites/Item Block/Item Block Hit.png");
     imgs.mushroom = loadImage("/sprites/mushroom.png");
+    imgs.coin = loadImage("/sprites/coin.png");
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};
@@ -35,6 +36,7 @@ function preload(){
     sounds.enemy = {};
     sounds.enemy.squash = loadSound("/sounds/Stomp.wav");
     sounds.kick = loadSound("/sounds/kick.wav");
+    sounds.coin = loadSound("/sounds/coin.wav");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

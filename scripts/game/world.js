@@ -26,6 +26,7 @@ world.run = function(){
     }
     pop();
     this.player.displayHealth(width-55, 55);
+    this.player.displayCoins(25, 55);
 }
 world.getObject = function(character){
     switch(character){
@@ -35,6 +36,7 @@ world.getObject = function(character){
         case "&": return MushroomItemBlock; break;
         case "M": return "player"; break;
         case "m": return ["item", Mushroom]; break;
+        case "C": return ["item", Coin]; break;
         case "G": return ["enemy", Goomba]; break;
         case "K": return ["enemy", Koopa]; break;
         case "S": return ["enemy", Shell]; break;

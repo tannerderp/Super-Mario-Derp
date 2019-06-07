@@ -21,6 +21,10 @@ ItemBlock.prototype.display = function(){
     pop();
 }
 ItemBlock.prototype.bottomCollide = function(){
+    if(!this.hit){
+        world.player.coins ++;
+        sounds.coin.play();
+    }
     this.hit = true;
 }
 function MushroomItemBlock(x, y){
