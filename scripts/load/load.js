@@ -19,6 +19,12 @@ function preload(){
         imgs.koopa.idle[i] = loadImage("/sprites/koopa/koopa"+(i+1)+".png");
     }
     imgs.koopa.shell = loadImage("/sprites/koopa/koopa shell.png");
+    imgs.redKoopa = {};
+    imgs.redKoopa.idle = Array(2);
+    for(var i = 0; i<2; i++){
+        imgs.redKoopa.idle[i] = loadImage("/sprites/koopa/red koopa "+i+".png");
+    }
+    imgs.redKoopa.shell = loadImage("/sprites/koopa/red koopa shell.png");
     imgs.brick = loadImage("/sprites/Brick Block.PNG");
     imgs.itemBlock = {};
     imgs.itemBlock.idle = Array(4);

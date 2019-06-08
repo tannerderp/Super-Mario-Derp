@@ -1,3 +1,5 @@
+//regular Koopa
+{
 function Koopa(x, y){
     this.x = x;
     this.y = y;
@@ -8,6 +10,7 @@ function Koopa(x, y){
     this.yvel = 0;
     this.frame = 0;
     this.direction = -1;
+    this.imgPath = imgs.koopa;
 }
 Koopa.prototype.run = function(p){
     this.display();
@@ -77,7 +80,7 @@ Koopa.prototype.update = function(){
             this.frame = 1;
         }
     }
-    this.img = imgs.koopa.idle[this.frame];
+    this.img = this.imgPath.idle[this.frame];
 }
 Koopa.prototype.display = function(){
     push();
@@ -87,4 +90,98 @@ Koopa.prototype.display = function(){
     imageMode(CENTER);
     image(this.img, 0, 0);
     pop();
+}
+}
+//red Koopa
+{
+function RedKoopa(x, y){
+    Koopa.call(this, x, y);
+    this.imgPath = imgs.redKoopa;
+    this.edgeCooldown = 11;
+}
+RedKoopa.prototype = Object.create(Koopa.prototype);
+RedKoopa.prototype.edgeCollide = function(x, x2, w){
+    if(x>w.x&&x<w.x+w.w&&this.y+this.h/2+1>w.y&&this.y-this.h/2<w.y+w.h){
+        this.leftEdge = false;
+    }
+    if(x2>w.x&&x2<w.x+w.w&&this.y+this.h/2+1>w.y&&this.y-this.h/2<w.y+w.h){
+        this.rightEdge = false;
+    }
+}
+RedKoopa.prototype.collide = function(p){
+    let xvel = abs(this.speed);
+    let yvel = abs(this.yvel)
+    this.edgeCooldown ++;
+    this.leftEdge = true;
+    this.rightEdge = true;
+    for(var i in world.blocks){
+        let w = world.blocks[i];
+        if(this.yvel >= 0 && this.yvel <= 0.25){
+            this.edgeCollide(this.x-this.w/2-1-abs(this.speed), this.x+this.w/2+1+abs(this.speed), w);
+        } else{
+            this.rightEdge = false;
+            this.leftEdge = false;
+        }
+        if(this.x+this.w/2>w.x&&this.x-this.w/2<w.x+w.w&&this.y+this.h/2>w.y&&this.y-this.h/2<w.y+w.h){
+            if(this.x+this.w/2-xvel-1>w.x&&this.x-this.w/2+xvel+1<w.x+w.w){
+    			if(this.y-this.h/2<w.y){
+    				this.y = w.y-this.h/2;
+                    this.yvel = 0;
+    			} else if(this.y+this.h/2>w.y+w.h){
+    				this.y = w.y+w.h+this.h/2;
+                    this.yvel *= -1;
+    			}
+    		}
+            if(this.y+this.h/2-1-yvel>w.y&&this.y-this.h/2+1+yvel<w.y+w.h){
+    			if(this.x-this.w/2<w.x||this.x+this.w/2>w.x+w.w){
+    				this.speed *= -1;
+                    this.direction *= -1;
+    			}
+    		}
+        }
+    }
+    if(this.rightEdge||this.leftEdge){
+        this.x += (this.w/2) * this.direction;
+        this.direction *= -1;
+        this.speed *= -1;
+        this.edgeCooldown = 0;
+    }
+    if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
+        if(p.y+p.h/2>this.y-this.h/2&&p.y+p.h/2<this.y){
+            this.dead = true;
+            p.yvel = -8;
+            p.y = this.y-this.h/2-p.h/2-1;
+            sounds.enemy.squash.play();
+            world.objects.push(new Shell(this.x, this.y, RedKoopa, imgs.redKoopa.shell));
+        } else{
+            if(!p.hurt){
+                p.damage();
+            }
+        }
+    }
+    for(var i in world.objects){
+        var o = world.objects[i];
+        if(o.x !== this.x && o.y !== this.y){ //check that it's not itself
+            if(this.x+this.w/2>o.x-o.w/2&&this.x-this.w/2<o.x+o.w/2&&this.y+this.h/2>o.y-o.h/2&&this.y-this.h/2<o.y+o.h/2){
+                if(o.isShell&&o.speed !== 0){
+                    this.dead = true;
+                    sounds.kick.play();
+                } else{
+                    this.speed *= -1;
+                    this.direction *= -1;
+                }
+            }
+        }
+    }
+}
+RedKoopa.prototype.display = function(){
+    push();
+    translate(this.x, this.y);
+    scale(3.0625);
+    scale(0.81632653061);
+    scale(this.direction, 1);
+    imageMode(CENTER);
+    image(this.img, 0, 0);
+    pop();
+}
 }

@@ -17,8 +17,11 @@ world.run = function(){
     this.displayBackground();
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
-        this.objects[i].run(this.player);
-        if(this.objects[i].dead){
+        let o = this.objects[i];
+        if(dist(this.player.x, this.player.y, o.x, o.y)<width/2+250){ //enemies don't mess up their starting positions til you see them
+            o.run(this.player);
+        }
+        if(o.dead){
             this.objects.splice(i, 1);
         }
     }
@@ -44,6 +47,7 @@ world.getObject = function(character){
         case "P": return ["enemy", Pirahna]; break;
         case "G": return ["enemy", Goomba]; break;
         case "K": return ["enemy", Koopa]; break;
+        case "R": return ["enemy", RedKoopa]; break;
         case "S": return ["enemy", Shell]; break;
         default: return null; break;
     }
@@ -55,8 +59,8 @@ world.load = function(level){
     for(var i in map){
         for(var j in map[i]){
             let c = map[i][j];
-            let x = j * 48;
-            let y = i * 48;
+            let x = j * 47;
+            let y = i * 47;
             let o = this.getObject(c);
             if(o === "player"){
                 this.player = new Mario(x, y);

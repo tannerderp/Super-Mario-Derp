@@ -1,4 +1,4 @@
-function Shell(x, y, type, s, img){
+function Shell(x, y, type, img, s){
     this.x = x;
     this.y = y;
     this.type = type || false;
