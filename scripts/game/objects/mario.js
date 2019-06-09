@@ -26,16 +26,17 @@ Mario.prototype.run = function(){
 Mario.prototype.displayHealth = function(x, y){
     push();
     translate(x, y);
+    scale(0.75);
     switch(this.health){
         case 3: fill(11, 49, 239); break;
         case 2: fill(242, 208, 16); break;
         case 1: fill(204, 12, 12); break;
         case 0: fill(0, 0, 0); break;
     }
-    ellipse(0, 0, 100, 100);
+    ellipse(0, 0, 75, 75);
     textFont(fonts.mario);
     fill(0, 0, 0);
-    textSize(80);
+    textSize(65);
     textAlign(CENTER, CENTER);
     text(this.health, 0, 0);
     pop();
@@ -43,6 +44,7 @@ Mario.prototype.displayHealth = function(x, y){
 Mario.prototype.displayCoins = function(x, y){
     push();
     translate(x, y);
+    scale(0.75);
     push();
     scale(0.125);
     imageMode(CENTER);

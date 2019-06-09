@@ -9,6 +9,7 @@ function Pirahna(x, y){
     this.wait  = 0;
     this.maxY = this.y;
     this.minY = this.y+this.h+1;
+    this.pipeH = (this.y+this.h/2)-height;
 }
 Pirahna.prototype.run = function(p){
     this.update();
@@ -25,8 +26,8 @@ Pirahna.prototype.collide = function(p){
     let x = this.x-this.w; //x and y of the pipe
     let y = this.y+this.h/2
     let w = 96; //width and height of pipe
-    let h = height-y;
-    if(p.x+p.w/2>x&&p.x-p.w/2<x+w&&((y-10)-p.y+p.h/2>=132||p.y+p.h/2>this.y-2)&&p.y-p.h/2<y+h){
+    let h = y-height;
+    if(p.x+p.w/2>x-1&&p.x-p.w/2<x+w+1&&((y-10)-p.y+p.h/2>=132||p.y+p.h/2>this.y-2)&&p.y-p.h/2<y+this.pipeH){
         this.touchingPipe = true;
     }
 }

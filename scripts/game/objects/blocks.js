@@ -18,6 +18,7 @@ Ground.prototype.collide = function(p){
         if(p.y+p.h/2-1-yvel>this.y&&p.y-p.h/2+1+yvel<this.y+this.h){
 			if(p.x-p.w/2<this.x){
 				p.x = this.x-p.w/2;
+                p.xvel = min(p.xvel, 0);
 			} else if(p.x+p.w/2>this.x+this.w){
 				p.x = this.x+this.w+p.w/2;
                 p.xvel = max(p.xvel, 0);

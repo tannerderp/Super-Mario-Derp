@@ -9,16 +9,17 @@ $.getJSON("/scripts/game/levels.json", function(json){
 world.run = function(){
     background(255, 255, 255);
     push();
-    if(this.player.x>this.levelLength-width/2){
-        translate(-this.levelLength+width, 0);
-    }else if(this.player.x>width/2){
-        translate(-this.player.x+width/2, 0);
+    scale(this.size);
+    if(this.player.x>this.levelLength-this.screenWidth/2){
+        translate(-this.levelLength+this.screenWidth, 0);
+    }else if(this.player.x>this.screenWidth/2){
+        translate(-this.player.x+this.screenWidth/2, 0);
     }
     this.displayBackground();
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
         let o = this.objects[i];
-        if(dist(this.player.x, this.player.y, o.x, o.y)<width/2+250){ //enemies don't mess up their starting positions til you see them
+        if(abs(this.player.x-o.x)<width/2+250){ //enemies don't mess up their starting positions til you see them
             o.run(this.player);
         }
         if(o.dead){
@@ -29,8 +30,8 @@ world.run = function(){
         this.blocks[i].run(this.player);
     }
     pop();
-    this.player.displayHealth(width-55, 55);
-    this.player.displayCoins(25, 55);
+    this.player.displayHealth(width-35, 35);
+    this.player.displayCoins(25, 25);
 }
 world.getObject = function(character){
     switch(character){
@@ -69,19 +70,24 @@ world.load = function(level){
             }else if(o){
                 this.blocks.push(new (o)(x, y));
             }
-            this.levelLength = map[i].length*48;
+            this.levelLength = map[i].length*47;
         }
     }
+    this.size = height/(map.length*47);
     this.groundColor = level.groundColor;
     this.topGroundColor = level.topGroundColor;
     this.background = level.background;
+    this.screenWidth = width/this.size;
 }
 world.displayBackground = function(){
-    for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
+    // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
+    var s = windowHeight/400;
+    for(var i = 0; i<= this.levelLength; i+= s*400){
         push();
         imageMode(LEFT);
         translate(i, 0);
-        scale(height/imgs.backgrounds[this.background].height);
+        // scale(height/imgs.backgrounds[this.background].height);
+        scale(s);
         image(imgs.backgrounds[this.background], 0, 0);
         pop();
     }
