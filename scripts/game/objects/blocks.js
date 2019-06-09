@@ -123,6 +123,7 @@ Pipe.prototype.display = function(){
 function PipeBottom(x, y){
     Ground.call(this, x, y);
     this.w = 0.81*96;
+    this.h = 48;
     this.x += 96/14;
 }
 PipeBottom.prototype = Object.create(Ground.prototype);

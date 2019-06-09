@@ -49,6 +49,7 @@ world.getObject = function(character){
         case "G": return ["enemy", Goomba]; break;
         case "K": return ["enemy", Koopa]; break;
         case "R": return ["enemy", RedKoopa]; break;
+        case "p": return ["enemy", ParaTroopa]; break;
         case "S": return ["enemy", Shell]; break;
         default: return null; break;
     }

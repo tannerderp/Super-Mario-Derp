@@ -12,6 +12,7 @@ function Shell(x, y, type, img, s){
     this.wait = 0;
 }
 Shell.prototype.run = function(p){
+    this.dead = false;
     this.display();
     this.update();
     this.collide(p);
