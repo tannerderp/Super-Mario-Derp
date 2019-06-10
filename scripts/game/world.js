@@ -93,7 +93,11 @@ world.load = function(level){
     }
     this.musicWait = 0;
     this.musicAdd = true;
-    this.music[0].play();
+    if(!this.music[0].notMusic){
+        this.music[0].play();
+    } else{
+        this.musicWait = 61;
+    }
 }
 world.displayBackground = function(){
     // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
@@ -116,5 +120,6 @@ world.init = function(){
 world.getMusicPath = function(num){
     switch(num){
         case 0: return music.overworld; break;
+        case 1: return music.underground; break;
     }
 }

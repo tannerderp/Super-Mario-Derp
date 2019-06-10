@@ -66,8 +66,15 @@ function preload(){
     //load music
     music.overworld = Array(2);
     for(var i= 0; i<2; i++){
-        music.overworld[i] = loadSound("/sounds/music/overworld/"+i+".mp3"); //there has to be two seperate files for each track, one for the beginning, and one for the part that loops. Mario music always has a beginning and a looping part
+        music.overworld[i] = loadSound("/sounds/music/overworld/"+i+".mp3"); //there has to be two seperate files for each track, one for the beginning, and one for the part that loops. Mario music usually has a beginning and a looping part. If it doesn't, just do what I did for the underground theme
     }
+    music.underground = Array(2);
+    music.underground[0] = {};
+    music.underground[0].notMusic = true;
+    music.underground[0].duration = function(d){
+        return 0;
+    }
+    music.underground[1] = loadSound("/sounds/music/underground/1.mp3")
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }
