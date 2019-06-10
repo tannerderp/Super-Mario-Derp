@@ -9,6 +9,13 @@ $.getJSON("/scripts/game/levels.json", function(json){
 world.run = function(){
     background(255, 255, 255);
     push();
+    if(this.musicWait>this.music[0].duration() * 60){
+        this.music[1].loop();
+        this.musicWait = 0;
+        this.musicAdd = false;
+    } else if(this.musicAdd){
+        this.musicWait ++;
+    }
     scale(this.size);
     if(this.player.x>this.levelLength-this.screenWidth/2){
         translate(-this.levelLength+this.screenWidth, 0);
@@ -79,6 +86,14 @@ world.load = function(level){
     this.topGroundColor = level.topGroundColor;
     this.background = level.background;
     this.screenWidth = width/this.size;
+    this.music = Array(2);
+    this.musicPath = this.getMusicPath(level.music);
+    for(var i = 0; i<2; i++){
+        this.music[i] = this.musicPath[i];
+    }
+    this.musicWait = 0;
+    this.musicAdd = true;
+    this.music[0].play();
 }
 world.displayBackground = function(){
     // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
@@ -97,4 +112,9 @@ world.displayBackground = function(){
 world.init = function(){
     this.load(this.levels[0]);
     scene = "game";
+}
+world.getMusicPath = function(num){
+    switch(num){
+        case 0: return music.overworld; break;
+    }
 }

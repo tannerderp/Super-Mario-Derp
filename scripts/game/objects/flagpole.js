@@ -16,6 +16,9 @@ FlagPole.prototype.run = function(p){
         if(this.wait > 180){
             p.direction = -1;
         }
+        if(this.wait>sounds.levelComplete.duration() * 60){
+            scene = "home";
+        }
     }
 }
 FlagPole.prototype.collide = function(p){
@@ -23,6 +26,8 @@ FlagPole.prototype.collide = function(p){
         sounds.levelComplete.play();
         p.canMove = false;
         p.xvel = 6;
+        world.music[0].stop();
+        world.music[1].stop();
         this.complete = true;
     }
 }

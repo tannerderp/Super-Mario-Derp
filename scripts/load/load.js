@@ -1,8 +1,10 @@
 let imgs = {};
 let fonts = {};
 let sounds = {};
+let music = {};
 function preload(){
     //load images
+    imgs.logo = loadImage("/sprites/logo.png");
     imgs.mario = {};
     imgs.mario.walk = Array(3);
     for(var i = 0; i<3; i++){
@@ -61,6 +63,11 @@ function preload(){
     sounds.kick = loadSound("/sounds/kick.wav");
     sounds.coin = loadSound("/sounds/coin.wav");
     sounds.levelComplete = loadSound("/sounds/Level_Complete.mp3");
+    //load music
+    music.overworld = Array(2);
+    for(var i= 0; i<2; i++){
+        music.overworld[i] = loadSound("/sounds/music/overworld/"+i+".mp3"); //there has to be two seperate files for each track, one for the beginning, and one for the part that loops. Mario music always has a beginning and a looping part
+    }
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }
@@ -72,5 +79,9 @@ keyPressed = function(){
 keyReleased = function(){
     keys[keyCode] = false;
     keys[key] = false;
+}
+let clicked = false;
+mouseReleased = function(){
+    clicked = true;
 }
 scene = "gameLoad";
