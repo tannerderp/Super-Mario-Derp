@@ -6,8 +6,11 @@ function Ground(x, y){
     this.y = y;
     this.w = 48;
     this.h = 48;
+    this.showTop = true;
+    this.isGround = true;
 }
 Ground.prototype.run = function(p){
+    this.showTop = true;
     this.display();
     this.collide(p);
 }
@@ -40,13 +43,23 @@ Ground.prototype.collide = function(p){
     }
 }
 Ground.prototype.display = function(){
+    for(var i in world.blocks){
+        var w = world.blocks[i];
+        if(w.isGround){ //can use instanceof because of object inheritance
+            if(this.x === w.x&&this.y+this.h>w.y+w.h-3&&this.y-2<w.y+w.h&&this.y !== w.y){
+                this.showTop = false;
+            }
+        }
+    }
     push();
     translate(this.x, this.y);
     fill(world.groundColor);
     noStroke();
     rect(0, 0, this.w, this.h);
-    fill(world.topGroundColor);
-    rect(0, 0, this.w, 10);
+    if(this.showTop){
+        fill(world.topGroundColor);
+        rect(0, 0, this.w, 10);
+    }
     pop();
 }
 }
@@ -54,6 +67,7 @@ Ground.prototype.display = function(){
 {
 function Brick(x, y){
     Ground.call(this, x, y);
+    this.isGround = false;
 }
 Brick.prototype = Object.create(Ground.prototype);
 Brick.prototype.display = function(){
@@ -70,6 +84,7 @@ function ItemBlock(x, y){
     Ground.call(this, x, y);
     this.frame = 0;
     this.hit = false;
+    this.isGround = false;
 }
 ItemBlock.prototype = Object.create(Ground.prototype);
 ItemBlock.prototype.display = function(){
@@ -97,6 +112,7 @@ ItemBlock.prototype.bottomCollide = function(){
 }
 function MushroomItemBlock(x, y){
     ItemBlock.call(this, x, y);
+    this.isGround = false;
 }
 MushroomItemBlock.prototype = Object.create(ItemBlock.prototype);
 MushroomItemBlock.prototype.bottomCollide = function(){
@@ -111,6 +127,7 @@ MushroomItemBlock.prototype.bottomCollide = function(){
 function Pipe(x, y){ //top part of the pipe
     Ground.call(this, x, y);
     this.w = 96;
+    this.isGround = false;
 }
 Pipe.prototype = Object.create(Ground.prototype);
 Pipe.prototype.display = function(){
@@ -125,6 +142,7 @@ function PipeBottom(x, y){
     this.w = 0.81*96;
     this.h = 48;
     this.x += 96/14;
+    this.isGround = false;
 }
 PipeBottom.prototype = Object.create(Ground.prototype);
 PipeBottom.prototype.display = function(){

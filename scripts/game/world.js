@@ -101,7 +101,7 @@ world.load = function(level){
 }
 world.displayBackground = function(){
     // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
-    var s = windowHeight/400;
+    var s = (windowHeight+5)/400;
     for(var i = 0; i<= this.levelLength; i+= s*400){
         push();
         imageMode(LEFT);
