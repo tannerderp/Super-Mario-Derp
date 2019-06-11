@@ -49,8 +49,8 @@ function preload(){
         imgs.pirahna[i] = loadImage("/sprites/pirahna/Pirahna"+(i+1)+".png");
     }
     imgs.flagPole = loadImage("/sprites/flagpole.png");
-    imgs.backgrounds = Array(3); //all backgrounds MUST be 395 x 331
-    for(var i = 0; i<3; i++){
+    imgs.backgrounds = Array(4); //all backgrounds MUST be 395 x 331
+    for(var i = 0; i<4; i++){
         imgs.backgrounds[i] = loadImage("/sprites/Backgrounds/"+i+".png");
     }
     //load sounds
@@ -74,7 +74,11 @@ function preload(){
     music.underground[0].duration = function(d){
         return 0;
     }
-    music.underground[1] = loadSound("/sounds/music/underground/1.mp3")
+    music.underground[1] = loadSound("/sounds/music/underground/1.mp3");
+    music.castle = Array(2);
+    for(var i= 0; i<2; i++){
+        music.castle[i] = loadSound("/sounds/music/castle/"+i+".mp3"); 
+    }
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

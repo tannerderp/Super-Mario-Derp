@@ -121,5 +121,6 @@ world.getMusicPath = function(num){
     switch(num){
         case 0: return music.overworld; break;
         case 1: return music.underground; break;
+        case 2: return music.castle; break;
     }
 }
