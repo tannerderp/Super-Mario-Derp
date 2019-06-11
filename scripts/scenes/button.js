@@ -3,6 +3,7 @@ function button(x, y, w, h, r, color, txt, txtSize, func){
     rectMode(CENTER);
     textAlign(CENTER, CENTER);
     fill(color);
+    strokeWeight(2);
     rect(x, y, w, h, r);
     fill(0, 0, 0);
     textSize(txtSize);

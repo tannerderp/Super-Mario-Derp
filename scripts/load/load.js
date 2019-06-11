@@ -91,4 +91,12 @@ let clicked = false;
 mouseReleased = function(){
     clicked = true;
 }
+let createdLevel = {
+    map: [],
+    name: "",
+    background: 0,
+    music: 0,
+    groundColor: [175, 118, 10],
+    topGroundColor: [57, 175, 14],
+}
 scene = "gameLoad";

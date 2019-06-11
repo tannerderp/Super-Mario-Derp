@@ -4,12 +4,9 @@ html{
     height: 100%;
     background-color: black;
 }
-canvas{
-    /* position: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
+.name{
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
 }
