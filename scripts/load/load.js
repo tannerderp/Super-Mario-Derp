@@ -77,8 +77,9 @@ function preload(){
     music.underground[1] = loadSound("/sounds/music/underground/1.mp3");
     music.castle = Array(2);
     for(var i= 0; i<2; i++){
-        music.castle[i] = loadSound("/sounds/music/castle/"+i+".mp3"); 
+        music.castle[i] = loadSound("/sounds/music/castle/"+i+".mp3");
     }
+    music.total = 3;
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

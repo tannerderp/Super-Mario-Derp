@@ -22,6 +22,8 @@ function draw(){
         case"home":home();break;
         case"levelname":levelName();break;
         case"levelbackground":levelBackground();break;
+        case"levelmusic":levelMusic.run();break;
+        case"levelmusicinit":levelMusic.init();break;
     }
     pop();
     clicked = false;

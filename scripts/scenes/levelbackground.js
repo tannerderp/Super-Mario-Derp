@@ -21,7 +21,7 @@ function levelBackground(){
     });
     button(width-75, height-25, 150, 50, 2, color(216, 22, 19), "Submit", 30, function(){
         setGroundColor();
-        scene = "levelmusic";
+        scene = "levelmusicinit";
     });
 }
 function setGroundColor(){
@@ -32,5 +32,8 @@ function setGroundColor(){
     } else if(b === 2){
         createdLevel.topGroundColor = [83, 148, 252];
         createdLevel.groundColor = [48, 99, 181];
+    } else if(b === 3){
+        createdLevel.topGroundColor = [205, 207, 211];
+        createdLevel.groundColor = [150, 152, 155];
     }
 }
