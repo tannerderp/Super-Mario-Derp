@@ -97,7 +97,21 @@ mouseReleased = function(){
     clicked = true;
 }
 let createdLevel = {
-    map: [],
+    map: [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+    ],
     name: "",
     background: 0,
     music: 0,

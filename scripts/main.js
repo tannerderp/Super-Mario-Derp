@@ -24,6 +24,7 @@ function draw(){
         case"levelbackground":levelBackground();break;
         case"levelmusic":levelMusic.run();break;
         case"levelmusicinit":levelMusic.init();break;
+        case"levellength":levelLength();break;
     }
     pop();
     clicked = false;

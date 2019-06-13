@@ -18,7 +18,7 @@ let levelMusic = {
         button(width-75, height-25, 150, 50, 2, color(216, 22, 19), "Submit", 30, function(){
             levelMusic.music.stop();
             createdLevel.music = levelMusic.track;
-            scene = "leveleditor";
+            scene = "levellength";
         });
         button(width/2-75, height/2+40, 150, 50, 2, color(216, 22, 19), "Stop", 30, function(){
             levelMusic.music.stop(); //I can't use this for whatever reason
