@@ -21,6 +21,7 @@ function levelBackground(){
     });
     button(width-75, height-25, 150, 50, 2, color(216, 22, 19), "Submit", 30, function(){
         setGroundColor();
+        createdLevel.background = world.background;
         scene = "levelmusicinit";
     });
 }
