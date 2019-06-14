@@ -16,13 +16,13 @@ world.run = function(){
     } else if(this.musicAdd){
         this.musicWait ++;
     }
-    scale(this.size);
     if(this.player.x>this.levelLength-this.screenWidth/2){
-        translate(-this.levelLength+this.screenWidth, 0);
+        translate((-this.levelLength+this.screenWidth)*this.size, 0);
     }else if(this.player.x>this.screenWidth/2){
-        translate(-this.player.x+this.screenWidth/2, 0);
+        translate((-this.player.x+this.screenWidth/2)*this.size, 0);
     }
     this.displayBackground(this.levelLength);
+    scale(this.size);
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
         let o = this.objects[i];
@@ -100,18 +100,14 @@ world.load = function(level){
     }
 }
 world.displayBackground = function(levelLength){
-    // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
     var s = (smallest+5)/400;
-    for(var i = 0; i<= levelLength; i+= s*400){
+    for(var i = 0; i<= levelLength; i+= 400){
         push();
         imageMode(LEFT);
         translate(i, 0);
-        // scale(height/imgs.backgrounds[this.background].height);
-        scale(s);
-        image(imgs.backgrounds[this.background], 0, 0);
+        image(imgs.backgrounds[this.background], 0, 0, 400, 400);
         pop();
     }
-
 }
 world.init = function(){
     this.load(this.levels[0]);

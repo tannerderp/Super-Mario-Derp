@@ -5,14 +5,14 @@ let levelEditor = {
 levelEditor.run = function(){
     background(255, 255, 255);
     push();
-    scale(this.size);
     if(this.scroll>this.levelLength-this.screenWidth/2){
-        translate(-this.levelLength+this.screenWidth, 0);
+        translate((-this.levelLength+this.screenWidth)*this.size, 0);
     }else if(this.scroll>this.screenWidth/2){
-        translate(-this.scroll+this.screenWidth/2, 0);
+        translate((-this.scroll+this.screenWidth/2)*this.size, 0);
     }
     world.background = createdLevel.background;
     world.displayBackground(this.levelLength);
+    scale(this.size);
     this.displayGrid();
     this.control();
     pop();

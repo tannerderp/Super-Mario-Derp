@@ -48,7 +48,7 @@ function levelLength(){
     button(width/2+100, height/2+90, 50, 50, 2, color(216, 22, 19), "down", 20, function(){
         createdLevel.map.splice(createdLevel.map.length-1, 1);
     });
-    createdLevel.map.length = constrain(createdLevel.map.length, 8, 40);
+    createdLevel.map.length = constrain(createdLevel.map.length, 8, createdLevel.map[0].length);
     for(var i in createdLevel.map){
         createdLevel.map[i].length = constrain(createdLevel.map[i].length, 10, 2000);
     }
