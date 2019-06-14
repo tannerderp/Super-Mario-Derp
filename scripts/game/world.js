@@ -22,7 +22,7 @@ world.run = function(){
     }else if(this.player.x>this.screenWidth/2){
         translate(-this.player.x+this.screenWidth/2, 0);
     }
-    this.displayBackground();
+    this.displayBackground(this.levelLength);
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
         let o = this.objects[i];
@@ -99,10 +99,10 @@ world.load = function(level){
         this.musicWait = 61;
     }
 }
-world.displayBackground = function(){
+world.displayBackground = function(levelLength){
     // for(var i = 0; i<=this.levelLength; i+= height/imgs.backgrounds[this.background].height*395){
-    var s = (windowHeight+5)/400;
-    for(var i = 0; i<= this.levelLength; i+= s*400){
+    var s = (smallest+5)/400;
+    for(var i = 0; i<= levelLength; i+= s*400){
         push();
         imageMode(LEFT);
         translate(i, 0);

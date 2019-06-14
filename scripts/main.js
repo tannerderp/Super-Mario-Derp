@@ -25,6 +25,8 @@ function draw(){
         case"levelmusic":levelMusic.run();break;
         case"levelmusicinit":levelMusic.init();break;
         case"levellength":levelLength();break;
+        case"leveleditor":levelEditor.run();break;
+        case"leveleditorinit":levelEditor.init();break;
     }
     pop();
     clicked = false;

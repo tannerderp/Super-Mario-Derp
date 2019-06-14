@@ -8,7 +8,7 @@ function levelLength(){
     text("Level Length", width/2, 35);
     pop();
     button(width-75, height-25, 150, 50, 2, color(216, 22, 19), "Submit", 30, function(){
-        scene = "leveleditor";
+        scene = "leveleditorinit";
     });
     push();
     fill(0, 0, 0);
