@@ -24,6 +24,9 @@ objectMenu.display = function(){
     background(255, 255, 255);
     for(var i in this.blocks){
         this.blocks[i].display();
+        if(this.blocks[i].editorDisplay){
+            this.blocks[i].editorDisplay();
+        }
     }
 }
 objectMenu.init = function(){
@@ -31,6 +34,10 @@ objectMenu.init = function(){
     for(var i in this.blocksKey){
         var o = world.getObject(this.blocksKey[i]);
         this.blocks.push(new (o)(100*i, height/2));
+        if(this.blocks[i].x>=400){
+            this.blocks[i].x = 100*i - 400;
+            this.blocks[i].y = height/2+60;
+        }
     }
     scene = "objectmenu";
 }

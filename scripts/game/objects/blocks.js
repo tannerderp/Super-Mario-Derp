@@ -133,6 +133,13 @@ MushroomItemBlock.prototype.bottomCollide = function(){
     }
     this.hit = true;
 }
+MushroomItemBlock.prototype.editorDisplay = function(){
+    push();
+    imageMode(LEFT);
+    translate(this.x, this.y);
+    image(imgs.mushroom, 10, 10, this.w-20, this.h-20);
+    pop();
+}
 }
 //Pipe
 {

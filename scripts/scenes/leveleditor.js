@@ -20,8 +20,28 @@ levelEditor.run = function(){
     this.displayGrid();
     for(var i in this.blocks){
         this.blocks[i].display();
+        if(this.blocks[i].editorDisplay){
+            this.blocks[i].editorDisplay();
+        }
     }
     pop();
+    if(this.erasing){
+        this.displayEraser(mouseX, mouseY);
+        if(clicked){
+            this.erase();
+            this.erasing = false;
+        }
+    } else{
+        this.displayEraser(width-15, 15);
+        if(mouseX>width-25&&mouseX<width&&mouseY>0&&mouseY<25){
+            cursor(HAND);
+            if(clicked){
+                this.placingBlock = undefined;
+                this.erasing = true;
+                this.erase();
+            }
+        }
+    }
 }
 String.prototype.replaceAt=function(index, char) {
     var a = this.split("");
@@ -45,6 +65,31 @@ levelEditor.placeBlock = function(){
         }
     }
 }
+levelEditor.erase = function(){
+    for(var i in createdLevel.map){
+        for(var j in createdLevel.map[i]){
+            let x = j * 47;
+            let y = i * 47;
+            let scroll = 0;
+            if(this.scroll>this.screenWidth/2){
+                scroll = this.scroll-this.screenWidth/2;
+            }
+            let MouseX = (mouseX/this.size)+scroll;
+            if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+                createdLevel.map[i] = createdLevel.map[i].replaceAt(j, " ");
+                this.reload();
+            }
+        }
+    }
+}
+levelEditor.displayEraser = function(x, y){
+    push();
+    stroke(216, 21, 21);
+    strokeWeight(2);
+    line(x-10, y-10, x+10, y+10);
+    line(x+10, y-10, x-10, y+10);
+    pop();
+}
 levelEditor.control = function(){
     this.scroll = constrain(this.scroll, this.screenWidth/2, this.levelLength-this.screenWidth/2);
     if(keys[RIGHT_ARROW]||keys.d){
@@ -54,6 +99,7 @@ levelEditor.control = function(){
         this.scroll -= 5;
     }
     if(releaseKeys[32]){
+        this.erasing = false;
         scene = "objectmenuinit";
     }
 }
@@ -76,6 +122,7 @@ levelEditor.init = function(){
     this.size = height/(createdLevel.map.length*47);
     this.screenWidth = width/this.size;
     this.levelLength = createdLevel.map[0].length*47;
+    this.erasing = false;
     scene = "leveleditor";
 }
 levelEditor.reload = function(){
