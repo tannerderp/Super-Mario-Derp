@@ -4,6 +4,10 @@ let levelEditor = {
 }
 levelEditor.run = function(){
     background(255, 255, 255);
+    this.control();
+    if(this.placingBlock&&clicked){
+        this.placeBlock();
+    }
     push();
     if(this.scroll>this.levelLength-this.screenWidth/2){
         translate((-this.levelLength+this.screenWidth)*this.size, 0);
@@ -14,8 +18,32 @@ levelEditor.run = function(){
     world.displayBackground(this.levelLength);
     scale(this.size);
     this.displayGrid();
-    this.control();
+    for(var i in this.blocks){
+        this.blocks[i].display();
+    }
     pop();
+}
+String.prototype.replaceAt=function(index, char) {
+    var a = this.split("");
+    a[index] = char;
+    return a.join("");
+}
+levelEditor.placeBlock = function(){
+    for(var i in createdLevel.map){
+        for(var j in createdLevel.map[i]){
+            let x = j * 47;
+            let y = i * 47;
+            let scroll = 0;
+            if(this.scroll>this.screenWidth/2){
+                scroll = this.scroll-this.screenWidth/2;
+            }
+            let MouseX = (mouseX/this.size)+scroll;
+            if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+                createdLevel.map[i] = createdLevel.map[i].replaceAt(j, this.placingBlock);
+                this.reload();
+            }
+        }
+    }
 }
 levelEditor.control = function(){
     this.scroll = constrain(this.scroll, this.screenWidth/2, this.levelLength-this.screenWidth/2);
@@ -24,6 +52,9 @@ levelEditor.control = function(){
     }
     if(keys[LEFT_ARROW]||keys.a){
         this.scroll -= 5;
+    }
+    if(releaseKeys[32]){
+        scene = "objectmenuinit";
     }
 }
 levelEditor.displayGrid = function(){
@@ -46,4 +77,24 @@ levelEditor.init = function(){
     this.screenWidth = width/this.size;
     this.levelLength = createdLevel.map[0].length*47;
     scene = "leveleditor";
+}
+levelEditor.reload = function(){
+    this.blocks = [];
+    this.objects = [];
+    let map = createdLevel.map;
+    for(var i in map){
+        for(var j in map[i]){
+            let c = map[i][j];
+            let x = j * 47;
+            let y = i * 47;
+            let o = world.getObject(c);
+            if(o === "player"){
+                this.player = new Mario(x, y);
+            } else if(Array.isArray(o)){
+                this.objects.push(new (o[1])(x, y));
+            }else if(o){
+                this.blocks.push(new (o)(x, y));
+            }
+        }
+    }
 }

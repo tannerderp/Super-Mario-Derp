@@ -84,6 +84,7 @@ function preload(){
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }
 let keys = {};
+let releaseKeys = {};
 keyPressed = function(){
     keys[keyCode] = true;
     keys[key] = true;
@@ -91,6 +92,8 @@ keyPressed = function(){
 keyReleased = function(){
     keys[keyCode] = false;
     keys[key] = false;
+    releaseKeys[keyCode] = true;
+    releaseKeys[key] = false;
 }
 let clicked = false;
 mouseReleased = function(){

@@ -1,4 +1,4 @@
-let scripts = ["/load/load", "/game/objects/blocks", "/game/objects/mario", "/game/objects/coin", "/game/objects/goomba", "/game/objects/shell", "/game/objects/koopa", "/game/objects/pirahna", "/game/objects/mushroom", "/game/objects/flagpole", "/game/world", "/scenes/button", "/scenes/home", "/scenes/levelname", "/scenes/levelbackground", "/scenes/levelmusic", "/scenes/levellength", "/scenes/leveleditor"];
+let scripts = ["/load/load", "/game/objects/blocks", "/game/objects/mario", "/game/objects/coin", "/game/objects/goomba", "/game/objects/shell", "/game/objects/koopa", "/game/objects/pirahna", "/game/objects/mushroom", "/game/objects/flagpole", "/game/world", "/scenes/button", "/scenes/home", "/scenes/levelname", "/scenes/levelbackground", "/scenes/levelmusic", "/scenes/levellength", "/scenes/leveleditor", "/scenes/levelobjectmenu"];
 function loadScript(url, callback) {
     // Adding the script tag to the head as suggested before
     var body = document.querySelector("body");

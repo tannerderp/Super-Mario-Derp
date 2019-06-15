@@ -1,4 +1,4 @@
-let scene = "home", smallest, nameBox;
+let scene = "home", smallest, nameBox, inEditor;
 function setup(){
     smallest = min(windowWidth, windowHeight);
     let canvas = createCanvas(smallest, smallest);
@@ -17,7 +17,7 @@ function draw(){
  	mouseY = pmouseY * height / smallest
     scale(smallest/width);
     switch(scene){
-        case"game":world.run();break;
+        case"game":world.run();inEditor=false;break;
         case"gameLoad":world.init();break;
         case"home":home();break;
         case"levelname":levelName();break;
@@ -25,9 +25,12 @@ function draw(){
         case"levelmusic":levelMusic.run();break;
         case"levelmusicinit":levelMusic.init();break;
         case"levellength":levelLength();break;
-        case"leveleditor":levelEditor.run();break;
+        case"leveleditor":levelEditor.run();inEditor=true;break;
         case"leveleditorinit":levelEditor.init();break;
+        case"objectmenu":objectMenu.run();inEditor=true;break;
+        case"objectmenuinit":objectMenu.init();break;
     }
     pop();
     clicked = false;
+    releaseKeys = {};
 }

@@ -43,9 +43,13 @@ Ground.prototype.collide = function(p){
     }
 }
 Ground.prototype.display = function(){
-    for(var i in world.blocks){
-        var w = world.blocks[i];
-        if(w.isGround){ //can use instanceof because of object inheritance
+    let l;
+    if(!inEditor) l = world;
+    if(inEditor) l = levelEditor;
+    this.showTop = true;
+    for(var i in l.blocks){
+        var w = l.blocks[i];
+        if(w.isGround){ //cant use instanceof because of object inheritance
             if(this.x === w.x&&this.y+this.h>w.y+w.h-3&&this.y-2<w.y+w.h&&this.y !== w.y){
                 this.showTop = false;
             }
@@ -53,11 +57,19 @@ Ground.prototype.display = function(){
     }
     push();
     translate(this.x, this.y);
-    fill(world.groundColor);
+    if(inEditor){
+        fill(createdLevel.groundColor);
+    } else{
+        fill(world.groundColor);
+    }
     noStroke();
     rect(0, 0, this.w, this.h);
     if(this.showTop){
-        fill(world.topGroundColor);
+        if(inEditor){
+            fill(createdLevel.topGroundColor);
+        } else{
+            fill(world.topGroundColor);
+        }
         rect(0, 0, this.w, 10);
     }
     pop();
