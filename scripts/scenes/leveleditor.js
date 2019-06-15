@@ -24,6 +24,12 @@ levelEditor.run = function(){
             this.blocks[i].editorDisplay();
         }
     }
+    for(var i in this.objects){
+        this.objects[i].display();
+        if(this.objects[i].editorDisplay){
+            this.objects[i].editorDisplay();
+        }
+    }
     pop();
     if(this.erasing){
         this.displayEraser(mouseX, mouseY);

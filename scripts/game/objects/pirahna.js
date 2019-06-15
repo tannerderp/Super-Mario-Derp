@@ -10,6 +10,7 @@ function Pirahna(x, y){
     this.maxY = this.y;
     this.minY = this.y+this.h+1;
     this.pipeH = (this.y+this.h/2)-height;
+    this.img = imgs.pirahna[0];
 }
 Pirahna.prototype.run = function(p){
     this.update();
@@ -66,6 +67,13 @@ Pirahna.prototype.update = function(){
         } else{
             this.yvel = 0;
         }
+    }
+}
+Pirahna.prototype.editorDisplay = function(){
+    this.img = imgs.pirahna[round(this.frame)];
+    this.frame += 0.0625;
+    if(this.frame>1){
+        this.frame = 0;
     }
 }
 Pirahna.prototype.display = function(){

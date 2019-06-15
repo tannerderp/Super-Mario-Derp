@@ -2,12 +2,15 @@ function Mushroom(x, y){
     this.x = x;
     this.y = y;
     this.yvel = 0;
-    this.speed = world.player.direction * 2.5;
+    if(!inEditor) this.speed = world.player.direction * 2.5;
+    if(inEditor) this.speed = 2.5;
     if(isNaN(this.speed)){
         this.speed = -2.5;
     }
     this.w = 48;
     this.h = 48
+    this.x += 24;
+    this.y += 24;
 }
 Mushroom.prototype.run = function(p){
     this.display();

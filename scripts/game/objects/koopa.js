@@ -11,6 +11,8 @@ function Koopa(x, y){
     this.frame = 0;
     this.direction = -1;
     this.imgPath = imgs.koopa;
+    this.x += 24;
+    this.y += 18;
 }
 Koopa.prototype.run = function(p){
     this.display();
@@ -184,6 +186,9 @@ RedKoopa.prototype.display = function(){
     image(this.img, 0, 0);
     pop();
 }
+RedKoopa.prototype.editorDisplay = function(){
+    this.img = this.imgPath.idle[0];
+}
 }
 //paratroopa
 {
@@ -273,5 +278,8 @@ ParaTroopa.prototype.display = function(){
     imageMode(CENTER);
     image(this.img, 0, 0);
     pop();
+}
+ParaTroopa.prototype.editorDisplay = function(){
+    this.img = this.imgPath.idle[0];
 }
 }

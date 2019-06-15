@@ -10,6 +10,8 @@ function Shell(x, y, type, img, s){
     this.yvel = 0;
     this.isShell = true; //so enemies can do collisions
     this.wait = 0;
+    this.x += 24;
+    this.y += 24;
 }
 Shell.prototype.run = function(p){
     this.dead = false;

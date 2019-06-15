@@ -7,6 +7,8 @@ function Goomba(x,y){
     this.speed = -2.5;
     this.yvel = 0;
     this.direction = 1;
+    this.x += 24;
+    this.y += 24;
 }
 Goomba.prototype.run = function(p){
     if(this.deadWait>0){
