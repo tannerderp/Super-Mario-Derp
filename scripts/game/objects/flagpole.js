@@ -6,7 +6,8 @@ function FlagPole(x, y){
     this.y -= 380;
     this.complete = false;
     this.wait = 0;
-    this.x += this.w;
+    this.x -= 24;
+    this.y -= 2;
 }
 FlagPole.prototype.run = function(p){
     this.display();
@@ -26,7 +27,7 @@ FlagPole.prototype.collide = function(p){
     if(p.x+p.w/2>this.x&&p.x-p.w/2<this.x+this.w&&p.y+p.h/2>this.y&&p.y-p.h/2<this.y+this.h){
         sounds.levelComplete.play();
         p.canMove = false;
-        p.xvel = 6;
+        p.xvel = 12;
         if(world.music[0].notMusic === false) world.music[0].stop();
         world.music[1].stop();
         this.complete = true;
@@ -35,7 +36,7 @@ FlagPole.prototype.collide = function(p){
 FlagPole.prototype.display = function(){
     push();
     imageMode(LEFT);
-    translate(this.x, this.y);
+    translate(this.x+this.w, this.y);
     scale(-1, 1);
     image(imgs.flagPole, 0, 0, this.w, this.h);
     pop();
