@@ -1,6 +1,6 @@
 let objectMenu = {
     blocksKey: ["#", "=", "|", "%", "?", "&", "F"],
-    objectsKey: ["m", "C", "P", "G", "K", "R", "p", "S"],
+    objectsKey: ["m", "C", "P", "G", "K", "R", "p", "S", "M"],
     page: "blocks",
 }
 objectMenu.run = function(){
@@ -74,7 +74,7 @@ objectMenu.init = function(){
     this.blocks = [];
     for(var i in this.blocksKey){
         var o = world.getObject(this.blocksKey[i]);
-        this.blocks.push(new (o)(100*i, height/2));
+        this.blocks.push(new (o)(100*i+10, height/2-60));
         if(this.blocks[i].x>=400){
             this.blocks[i].x = 100*i - 400;
             this.blocks[i].y = height/2+60;
@@ -83,17 +83,26 @@ objectMenu.init = function(){
     this.objects = [];
     for(var i in this.objectsKey){
         var x = world.getObject(this.objectsKey[i])
-        var o = x[1];
-        this.objects.push(new (o)(100 * i, height/2));
-        if(this.objects[i].x>=400){
-            this.objects[i].x = 100*i - 400;
-            this.objects[i].y = height/2+60;
+        if(Array.isArray(x)){
+            var o = x[1];
+            this.objects.push(new (o)(100 * i+30, height/2-60));
+            if(this.objects[i].x>=400){
+                this.objects[i].x = 100*i - 400+30;
+                this.objects[i].y = height/2+60;
+            }
+        } else{
+            this.objects.push(new Mario(30, height/2+120));
         }
     }
     scene = "objectmenu";
 }
 objectMenu.pageButton = function(x, y, txt){
     push();
+    if(this.page === txt){
+        fill(162, 187, 249);
+        noStroke();
+        rect(x-5-txt.length*5, y-10, txt.length*10+8, 20);
+    }
     fill(0, 0, 0);
     textSize(20);
     textAlign(CENTER, CENTER);

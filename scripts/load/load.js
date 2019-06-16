@@ -120,5 +120,6 @@ let createdLevel = {
     music: 0,
     groundColor: [175, 118, 10],
     topGroundColor: [57, 175, 14],
+    created: false,
 }
 scene = "gameLoad";

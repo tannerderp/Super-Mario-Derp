@@ -29,6 +29,7 @@ function draw(){
         case"leveleditorinit":levelEditor.init();break;
         case"objectmenu":objectMenu.run();inEditor=true;break;
         case"objectmenuinit":objectMenu.init();break;
+        case"createdlevel":CreatedLevel();break;
     }
     pop();
     clicked = false;

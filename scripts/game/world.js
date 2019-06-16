@@ -39,6 +39,12 @@ world.run = function(){
     pop();
     this.player.displayHealth(width-35, 35);
     this.player.displayCoins(25, 25);
+    if(this.levelToLoad === createdLevel){
+        button(width-100, 35, 50, 30, 2, color(9, 116, 224), "Quit", 20, function(){
+            stopMusic();
+            scene = "createdlevel";
+        })
+    }
 }
 world.getObject = function(character){
     switch(character){
@@ -110,7 +116,7 @@ world.displayBackground = function(levelLength){
     }
 }
 world.init = function(){
-    this.load(this.levels[0]);
+    this.load(this.levelToLoad);
     scene = "game";
 }
 world.getMusicPath = function(num){
@@ -119,4 +125,7 @@ world.getMusicPath = function(num){
         case 1: return music.underground; break;
         case 2: return music.castle; break;
     }
+}
+function stopMusic(){
+    world.music[1].stop(); //for some reason I can't stop the music inside of the world object. weird piss
 }

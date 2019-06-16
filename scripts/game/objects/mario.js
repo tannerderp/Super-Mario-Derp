@@ -12,6 +12,9 @@ function Mario(x, y){
     this.hurtCooldown = 0;
     this.coins = 0;
     this.canMove = true;
+    this.img = imgs.mario.walk[0];
+    this.x += 24;
+    this.y += 14;
 }
 Mario.prototype.run = function(){
     this.update();

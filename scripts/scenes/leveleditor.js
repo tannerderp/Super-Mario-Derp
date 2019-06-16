@@ -1,6 +1,7 @@
 let levelEditor = {
     scroll: 0,
     size: 0,
+    placedMario: false,
 }
 levelEditor.run = function(){
     background(255, 255, 255);
@@ -30,6 +31,7 @@ levelEditor.run = function(){
             this.objects[i].editorDisplay();
         }
     }
+    if(this.player) this.player.display();
     pop();
     if(this.erasing){
         this.displayEraser(mouseX, mouseY);
@@ -48,6 +50,9 @@ levelEditor.run = function(){
             }
         }
     }
+    if(this.placedMario){
+        this.runButton(width-45, 15);
+    }
 }
 String.prototype.replaceAt=function(index, char) {
     var a = this.split("");
@@ -65,7 +70,12 @@ levelEditor.placeBlock = function(){
             }
             let MouseX = (mouseX/this.size)+scroll;
             if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+                if(this.placedMario&&this.placingBlock==="M") this.placingBlock = " ";
                 createdLevel.map[i] = createdLevel.map[i].replaceAt(j, this.placingBlock);
+                if(this.placingBlock === "M" && !this.placedMario){
+                    this.placedMario = true;
+                }
+                if(this.placingBlock === "M") this.placingBlock = "";
                 this.reload();
             }
         }
@@ -82,6 +92,7 @@ levelEditor.erase = function(){
             }
             let MouseX = (mouseX/this.size)+scroll;
             if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+                if(createdLevel.map[i][j] === "M") this.placedMario = false;
                 createdLevel.map[i] = createdLevel.map[i].replaceAt(j, " ");
                 this.reload();
             }
@@ -95,6 +106,21 @@ levelEditor.displayEraser = function(x, y){
     line(x-10, y-10, x+10, y+10);
     line(x+10, y-10, x-10, y+10);
     pop();
+}
+levelEditor.runButton = function(x, y){
+    push();
+    noStroke();
+    fill(255, 255, 255);
+    triangle(x-10, y-10, x+10, y, x-10, y+10);
+    pop();
+    if(mouseX>x-10&&mouseX<x+10&&mouseY>y-10&&mouseY<y+10){
+        cursor(HAND);
+        if(clicked){
+            this.erase();
+            world.levelToLoad = createdLevel;
+            scene = "gameLoad";
+        }
+    }
 }
 levelEditor.control = function(){
     this.scroll = constrain(this.scroll, this.screenWidth/2, this.levelLength-this.screenWidth/2);
@@ -129,11 +155,20 @@ levelEditor.init = function(){
     this.screenWidth = width/this.size;
     this.levelLength = createdLevel.map[0].length*47;
     this.erasing = false;
+    this.placedMario = false;
+    this.scroll = 0;
+    for(var i in createdLevel.map){
+        for(var j in createdLevel.map[i]){
+            if(createdLevel.map[i][j]==="M") this.placedMario = true;
+        }
+    }
+    this.reload();
     scene = "leveleditor";
 }
 levelEditor.reload = function(){
     this.blocks = [];
     this.objects = [];
+    this.player = undefined;
     let map = createdLevel.map;
     for(var i in map){
         for(var j in map[i]){
