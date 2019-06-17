@@ -15,8 +15,13 @@ levelEditor.run = function(){
     }else if(this.scroll>this.screenWidth/2){
         translate((-this.scroll+this.screenWidth/2)*this.size, 0);
     }
+    if(height/(createdLevel.map.length*47)<this.size){
+        if(this.scrollY>this.screenHeight/2){
+            translate(0, (-this.scrollY+this.screenHeight/2)*this.size);
+        }
+    }
     world.background = createdLevel.background;
-    world.displayBackground(this.levelLength);
+    world.displayBackground(this.levelLength, createdLevel.map.length*47, this.size);
     scale(this.size);
     this.displayGrid();
     for(var i in this.blocks){
@@ -65,11 +70,16 @@ levelEditor.placeBlock = function(){
             let x = j * 47;
             let y = i * 47;
             let scroll = 0;
+            let scrollY = 0;
             if(this.scroll>this.screenWidth/2){
                 scroll = this.scroll-this.screenWidth/2;
             }
+            if(this.scrollY>this.screenHeight/2){
+                scrollY = this.scrollY-this.screenHeight/2;
+            }
             let MouseX = (mouseX/this.size)+scroll;
-            if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+            let MouseY = (mouseY/this.size)+scrollY;
+            if(MouseX>x&&MouseX<x+48&&MouseY>y&&MouseY<y+48){
                 if(this.placedMario&&this.placingBlock==="M") this.placingBlock = " ";
                 createdLevel.map[i] = createdLevel.map[i].replaceAt(j, this.placingBlock);
                 if(this.placingBlock === "M" && !this.placedMario){
@@ -87,11 +97,16 @@ levelEditor.erase = function(){
             let x = j * 47;
             let y = i * 47;
             let scroll = 0;
+            let scrollY = 0;
             if(this.scroll>this.screenWidth/2){
                 scroll = this.scroll-this.screenWidth/2;
             }
+            if(this.scrollY>this.screenHeight/2){
+                scrollY = this.scrollY-this.screenHeight/2;
+            }
+            let MouseY = (mouseY/this.size)+scrollY;
             let MouseX = (mouseX/this.size)+scroll;
-            if(MouseX>x&&MouseX<x+48&&mouseY/this.size>y&&mouseY/this.size<y+48){
+            if(MouseX>x&&MouseX<x+48&&MouseY>y&&MouseY<y+48){
                 if(createdLevel.map[i][j] === "M") this.placedMario = false;
                 createdLevel.map[i] = createdLevel.map[i].replaceAt(j, " ");
                 this.reload();
@@ -130,10 +145,17 @@ levelEditor.control = function(){
     if(keys[LEFT_ARROW]||keys.a){
         this.scroll -= 5;
     }
+    if(keys[UP_ARROW]||keys.w){
+        this.scrollY -= 5;
+    }
+    if(keys[DOWN_ARROW]||keys.s){
+        this.scrollY += 5;
+    }
     if(releaseKeys[32]){
         this.erasing = false;
         scene = "objectmenuinit";
     }
+    this.scrollY = constrain(this.scrollY, this.screenHeight/2, createdLevel.map.length*47-this.screenHeight/2);
 }
 levelEditor.displayGrid = function(){
     for(var i in createdLevel.map){
@@ -151,12 +173,14 @@ levelEditor.displayGrid = function(){
     }
 }
 levelEditor.init = function(){
-    this.size = height/(createdLevel.map.length*47);
+    this.size = max(height/(createdLevel.map.length*47), height/(13*47));
     this.screenWidth = width/this.size;
+    this.screenHeight = height/this.size;
     this.levelLength = createdLevel.map[0].length*47;
     this.erasing = false;
     this.placedMario = false;
     this.scroll = 0;
+    this.scrollY = createdLevel.map.length*47-this.screenHeight/2;
     for(var i in createdLevel.map){
         for(var j in createdLevel.map[i]){
             if(createdLevel.map[i][j]==="M") this.placedMario = true;
