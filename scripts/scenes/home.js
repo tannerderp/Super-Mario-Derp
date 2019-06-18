@@ -6,7 +6,7 @@ function home(){
     pop();
     button(width/2, height/2, 150, 50, 2, color(216, 22, 19), "Play", 30, function(){
         world.levelToLoad = world.levels[0];
-        scene = "gameLoad";
+        scene = "worldmapinit";
     });
     button(width/2, height/2+100, 150, 50, 2, color(9, 116, 224), "Level Editor", 25, function(){
         if(createdLevel.created){

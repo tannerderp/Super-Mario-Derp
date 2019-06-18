@@ -19,7 +19,8 @@ FlagPole.prototype.run = function(p){
             p.direction = -1;
         }
         if(this.wait>sounds.levelComplete.duration() * 60){
-            scene = "home";
+            scene = "worldmapinit";
+            if(inEditor) scene = "createdlevel";
         }
     }
 }

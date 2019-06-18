@@ -53,6 +53,11 @@ function preload(){
     for(var i = 0; i<4; i++){
         imgs.backgrounds[i] = loadImage("/sprites/Backgrounds/"+i+".png");
     }
+    imgs.worldMap = {};
+    imgs.worldMap.mario = Array(2);
+    for(var i = 0; i<2; i++){
+        imgs.worldMap.mario[i] = loadImage("/sprites/world map/mario"+i+".png");
+    }
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};
@@ -80,6 +85,7 @@ function preload(){
         music.castle[i] = loadSound("/sounds/music/castle/"+i+".mp3");
     }
     music.total = 3;
+    music.worldMap = loadSound("/sounds/music/world map.mp3");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

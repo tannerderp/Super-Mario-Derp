@@ -124,7 +124,7 @@ world.displayBackground = function(levelLength, levelHeight, size){
     }
 }
 world.init = function(){
-    this.load(this.levelToLoad);
+    this.load(this.levels[this.levelToLoad]);
     scene = "game";
 }
 world.getMusicPath = function(num){

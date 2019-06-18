@@ -30,6 +30,8 @@ function draw(){
         case"objectmenu":objectMenu.run();inEditor=true;break;
         case"objectmenuinit":objectMenu.init();break;
         case"createdlevel":CreatedLevel();break;
+        case"worldmapinit":worldMap.init();break;
+        case"worldmap":worldMap.run();break;
     }
     pop();
     clicked = false;
