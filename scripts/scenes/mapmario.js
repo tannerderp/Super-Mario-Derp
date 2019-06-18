@@ -55,7 +55,7 @@ MapMario.prototype.collide = function(){
         if(i !== 0){
             let x = i * 75+75;
             if(this.x+this.w/2>x&&this.x-this.w/2<x + 40){
-                world.levelToLoad = i-1;
+                world.levelToLoad = world.levels[i-1];
             }
         }
     }
