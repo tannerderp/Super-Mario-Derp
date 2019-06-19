@@ -19,9 +19,11 @@ Pirahna.prototype.run = function(p){
     this.display();
 }
 Pirahna.prototype.collide = function(p){
-    if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
-        if(!p.hurt){
-            p.damage();
+    if(this.y<this.minY){
+        if(p.x+p.w/2>this.x-this.w/2&&p.x-p.w/2<this.x+this.w/2&&p.y+p.h/2>this.y-this.h/2&&p.y-p.h/2<this.y+this.h/2){
+            if(!p.hurt){
+                p.damage();
+            }
         }
     }
     let x = this.x-this.w; //x and y of the pipe

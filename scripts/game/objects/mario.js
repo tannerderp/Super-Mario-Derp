@@ -120,12 +120,12 @@ Mario.prototype.control = function(){
     }
     if(keys[RIGHT_ARROW]||keys.d){
         this.xvel += 0.45;
-        if(this.running) this.xvel += 0.1;
+        if(this.running) this.xvel += 0.175;
         this.direction = 1;
     }
     if(keys[LEFT_ARROW]||keys.a){
         this.xvel -= 0.45;
-        if(this.running) this.xvel -= 0.1;
+        if(this.running) this.xvel -= 0.175;
         this.direction = -1;
     }
     if((keys[UP_ARROW]||keys.w)&&this.grounded){
