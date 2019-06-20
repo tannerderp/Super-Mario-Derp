@@ -1,4 +1,4 @@
-let scene = "home", smallest, nameBox, inEditor;
+let scene = "opening", smallest, nameBox, inEditor;
 function setup(){
     smallest = min(windowWidth, windowHeight);
     let canvas = createCanvas(smallest, smallest);
@@ -19,6 +19,7 @@ function draw(){
     switch(scene){
         case"game":world.run();inEditor=false;break;
         case"gameLoad":world.init();break;
+        case"opening":opening();break;
         case"home":home();break;
         case"levelname":levelName();break;
         case"levelbackground":levelBackground();break;
