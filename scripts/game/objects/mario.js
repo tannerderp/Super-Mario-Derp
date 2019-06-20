@@ -61,6 +61,23 @@ Mario.prototype.displayCoins = function(x, y){
     text(this.coins, 50, 15);
     pop();
 }
+Mario.prototype.displayLives = function(x, y){
+    push();
+    translate(x, y);
+    scale(0.75);
+    push();
+    imageMode(CENTER);
+    scale(0.75);
+    image(imgs.mario.walk[0], 0, 0);
+    pop();
+    textSize(40);
+    fill(0, 0, 0);
+    textAlign(CENTER);
+    textFont(fonts.mario);
+    text(" : ", 20, 10);
+    text(worldMap.lives, 50, 15);
+    pop();
+}
 Mario.prototype.damage = function(){
     this.health --;
     sounds.mario.hurt.play();
@@ -111,6 +128,9 @@ Mario.prototype.update = function(){
             this.hurtCooldown = 0;
             this.show = true;
         }
+    }
+    if((this.health<1 || this.y-this.h/2>(world.map.length*47))&&world.deathWait === 0&&!world.levelComplete){
+        world.death();
     }
 }
 Mario.prototype.control = function(){

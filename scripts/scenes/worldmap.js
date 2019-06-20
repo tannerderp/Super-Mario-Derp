@@ -1,5 +1,6 @@
 let worldMap = {
     levels: [],
+    lives: 5,
 }
 $.getJSON("/scripts/game/levels.json", function(json){
     worldMap.levels = json.levels;

@@ -20,7 +20,7 @@ FlagPole.prototype.run = function(p){
         }
         if(this.wait>sounds.levelComplete.duration() * 60){
             scene = "worldmapinit";
-            if(inEditor) scene = "createdlevel";
+            if(world.levelToLoad === createdLevel) scene = "createdlevel";
         }
     }
 }
@@ -29,8 +29,8 @@ FlagPole.prototype.collide = function(p){
         sounds.levelComplete.play();
         p.canMove = false;
         p.xvel = 12;
-        if(world.music[0].notMusic === false) world.music[0].stop();
-        world.music[1].stop();
+        stopMusic();
+        world.levelComplete = true;
         this.complete = true;
     }
 }

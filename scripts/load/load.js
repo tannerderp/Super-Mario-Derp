@@ -63,6 +63,7 @@ function preload(){
     sounds.mario = {};
     sounds.mario.jump = loadSound("/sounds/Mario_Jump.wav");
     sounds.mario.hurt = loadSound("/sounds/Mario_Hurt.wav");
+    sounds.mario.death = loadSound("/sounds/music/death.wav");
     sounds.enemy = {};
     sounds.enemy.squash = loadSound("/sounds/Stomp.wav");
     sounds.kick = loadSound("/sounds/kick.wav");

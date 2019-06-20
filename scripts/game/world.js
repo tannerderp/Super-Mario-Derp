@@ -9,12 +9,20 @@ $.getJSON("/scripts/game/levels.json", function(json){
 world.run = function(){
     background(255, 255, 255);
     push();
-    if(this.musicWait>this.music[0].duration() * 60){
-        this.music[1].loop();
-        this.musicWait = 0;
-        this.musicAdd = false;
-    } else if(this.musicAdd){
-        this.musicWait ++;
+    if(this.deathWait<1&&!this.levelComplete){
+        if(this.musicWait>this.music[0].duration() * 60){
+            this.music[1].loop();
+            this.musicWait = 0;
+            this.musicAdd = false;
+        } else if(this.musicAdd){
+            this.musicWait ++;
+        }
+    }
+    if(this.deathWait>0){
+        this.deathWait ++;
+        if(this.deathWait>sounds.mario.death.duration() * 60){
+            scene = this.returnDest;
+        }
     }
     if(this.player.x>this.levelLength-this.screenWidth/2){
         translate((-this.levelLength+this.screenWidth)*this.size, 0);
@@ -45,7 +53,8 @@ world.run = function(){
     }
     pop();
     this.player.displayHealth(width-35, 35);
-    this.player.displayCoins(25, 25);
+    if(this.levelToLoad !== createdLevel) this.player.displayLives(25, 15);
+    this.player.displayCoins(25, 40);
     if(this.levelToLoad === createdLevel){
         button(width-100, 35, 50, 30, 2, color(9, 116, 224), "Quit", 20, function(){
             stopMusic();
@@ -124,8 +133,17 @@ world.displayBackground = function(levelLength, levelHeight, size){
     }
 }
 world.init = function(){
+    this.deathWait = 0;
+    this.levelComplete = false;
     this.load(this.levelToLoad);
     scene = "game";
+}
+world.death = function(){
+    if(this.levelToLoad !== createdLevel) worldMap.lives --;
+    this.deathWait = 1;
+    this.player.canMove = false;
+    stopMusic();
+    sounds.mario.death.play();
 }
 world.getMusicPath = function(num){
     switch(num){
@@ -134,6 +152,12 @@ world.getMusicPath = function(num){
         case 2: return music.castle; break;
     }
 }
+function isFunction(functionToCheck) {
+ return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
 function stopMusic(){
+    if(world.music[0].duration() !== 0){
+        if(isFunction(world.music[0].stop())) world.music[0].stop();
+    }
     world.music[1].stop(); //for some reason I can't stop the music inside of the world object. weird piss
 }

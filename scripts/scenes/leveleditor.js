@@ -133,6 +133,7 @@ levelEditor.runButton = function(x, y){
         if(clicked){
             this.erase();
             world.levelToLoad = createdLevel;
+            world.returnDest = "createdlevel";
             scene = "gameLoad";
         }
     }
