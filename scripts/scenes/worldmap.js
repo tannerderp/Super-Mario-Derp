@@ -1,6 +1,7 @@
 let worldMap = {
     levels: [],
     lives: 5,
+    marioX: 95,
 }
 $.getJSON("/scripts/game/levels.json", function(json){
     worldMap.levels = json.levels;
@@ -34,6 +35,6 @@ worldMap.init = function(){
     for(var i in this.levels){
         this.spaces.push(this.levels[i]);
     }
-    this.player = new MapMario(95, height/2);
+    this.player = new MapMario(this.marioX, height/2);
     scene = "worldmap";
 }

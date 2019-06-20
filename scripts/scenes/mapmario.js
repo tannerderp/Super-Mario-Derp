@@ -47,6 +47,7 @@ MapMario.prototype.control = function(){
     if(keys[32] && this.x !== 95){
         this.collide();
         music.worldMap.stop();
+        worldMap.marioX = this.x;
         scene = "gameLoad";
     }
 }

@@ -1,5 +1,5 @@
 let objectMenu = {
-    blocksKey: ["#", "=", "|", "%", "?", "&", "F"],
+    blocksKey: ["#", "=", "|", "%", "?", "&", "b", "F"],
     objectsKey: ["m", "C", "P", "G", "K", "R", "p", "S", "M"],
     page: "blocks",
 }

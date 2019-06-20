@@ -70,6 +70,7 @@ world.getObject = function(character){
         case "%": return Brick; break;
         case "?": return ItemBlock; break;
         case "&": return MushroomItemBlock; break;
+        case "b": return NoteBlock; break;
         case "F": return FlagPole; break; //f in the chat
         case "M": return "player"; break;
         case "m": return ["item", Mushroom]; break;

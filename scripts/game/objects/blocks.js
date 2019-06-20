@@ -32,6 +32,7 @@ Ground.prototype.collide = function(p){
 				p.y = this.y-p.h/2;
                 p.yvel = 0;
                 p.grounded = true;
+                if(this.topCollide) this.topCollide(p);
 			} else if(p.y+p.h/2>this.y+this.h){
 				p.y = this.y+this.h+p.h/2;
                 p.yvel *= -1;
@@ -170,5 +171,24 @@ PipeBottom.prototype.display = function(){
     translate(this.x, this.y);
     image(imgs.pipe.bottom, 0, 0, this.w, this.h);
     pop();
+}
+}
+//note block
+{
+function NoteBlock(x, y){
+    Brick.call(this, x, y);
+}
+NoteBlock.prototype = Object.create(Brick.prototype);
+NoteBlock.prototype.display = function(){
+    push();
+    imageMode(LEFT);
+    translate(this.x, this.y);
+    image(imgs.noteBlock, 0, 0, this.w, this.h)
+    pop();
+}
+NoteBlock.prototype.topCollide = function(p){
+    p.grounded = false;
+    p.y --;
+    p.yvel = -12;
 }
 }

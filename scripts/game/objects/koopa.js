@@ -99,6 +99,7 @@ Koopa.prototype.display = function(){
 function RedKoopa(x, y){
     Koopa.call(this, x, y);
     this.imgPath = imgs.redKoopa;
+    this.img = imgs.redKoopa.idle[0];
     this.edgeCooldown = 11;
 }
 RedKoopa.prototype = Object.create(Koopa.prototype);
@@ -198,6 +199,7 @@ function ParaTroopa(x, y){
     this.h = 0.81632653061*imgs.koopa.idle[0].height;
     this.speed = 0;
     this.imgPath = imgs.paraTroopa;
+    this.img = imgs.paraTroopa.idle[0];
     this.wait = 0;
     this.yvel = 2.5;
 }

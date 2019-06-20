@@ -33,6 +33,7 @@ function preload(){
         imgs.paraTroopa.idle[i] = loadImage("/sprites/koopa/paratroopa/"+i+".png");
     }
     imgs.brick = loadImage("/sprites/Brick Block.PNG");
+    imgs.noteBlock = loadImage("/sprites/note block.png")
     imgs.itemBlock = {};
     imgs.itemBlock.idle = Array(4);
     for(var i = 0; i<4; i++){
@@ -103,7 +104,12 @@ keyReleased = function(){
     releaseKeys[key] = false;
 }
 let clicked = false;
+let holdClicked = false;
+mousePressed = function(){
+    holdClicked = true;
+}
 mouseReleased = function(){
+    holdClicked = false;
     clicked = true;
 }
 let createdLevel = {

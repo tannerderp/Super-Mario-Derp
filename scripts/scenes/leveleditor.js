@@ -6,7 +6,7 @@ let levelEditor = {
 levelEditor.run = function(){
     background(255, 255, 255);
     this.control();
-    if(this.placingBlock&&clicked){
+    if(this.placingBlock&&(clicked||(holdClicked&&this.placingBlock==="#"))){
         this.placeBlock();
     }
     push();
