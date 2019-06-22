@@ -37,6 +37,8 @@ function draw(){
         case"createdlevel":CreatedLevel();break;
         case"worldmapinit":worldMap.init();break;
         case"worldmap":worldMap.run();break;
+        case"communitylevels":communityLevels.run();break;
+        case"communitylevelsinit":communityLevels.init();break;
     }
     pop();
     clicked = false;

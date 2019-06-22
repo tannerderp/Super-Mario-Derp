@@ -21,6 +21,7 @@ FlagPole.prototype.run = function(p){
         if(this.wait>sounds.levelComplete.duration() * 60){
             scene = "worldmapinit";
             if(world.levelToLoad === createdLevel) scene = "createdlevel";
+            if(world.returnDest === "communitylevels") scene = "communitylevels"; 
         }
     }
 }
