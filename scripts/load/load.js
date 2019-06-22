@@ -129,6 +129,7 @@ let createdLevel = {
         "                        ",
     ],
     name: "",
+    creator: "",
     background: 0,
     music: 0,
     groundColor: [175, 118, 10],

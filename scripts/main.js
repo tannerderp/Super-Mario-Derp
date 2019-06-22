@@ -1,4 +1,4 @@
-let scene = "opening", smallest, nameBox, inEditor;
+let scene = "opening", smallest, nameBox, creatorBox, inEditor;
 function setup(){
     smallest = min(windowWidth, windowHeight);
     let canvas = createCanvas(smallest, smallest);
@@ -9,6 +9,10 @@ function setup(){
     nameBox.attribute("placeholder", "name");
     nameBox.addClass("name");
     nameBox.position(-500, -500);
+    creatorBox = createInput("", "text");
+    creatorBox.attribute("placeholder", "creator");
+    creatorBox.addClass("name");
+    creatorBox.position(-500, -500);
 }
 function draw(){
     cursor("default");
