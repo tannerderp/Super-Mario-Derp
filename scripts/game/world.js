@@ -41,7 +41,7 @@ world.run = function(){
     this.player.run();
     for(var i = this.objects.length-1; i>=0; i--){
         let o = this.objects[i];
-        if(abs(this.player.x-o.x)<width/2+250){ //enemies don't mess up their starting positions til you see them
+        if(abs(this.player.x-o.x)<width+250){ //enemies don't mess up their starting positions til you see them
             o.run(this.player);
         }
         if(o.dead){
@@ -53,7 +53,7 @@ world.run = function(){
     }
     pop();
     this.player.displayHealth(width-35, 35);
-    if(this.levelToLoad !== createdLevel) this.player.displayLives(25, 15);
+    if(this.levelToLoad !== createdLevel&&this.returnDest !== "communitylevels") this.player.displayLives(25, 15);
     this.player.displayCoins(25, 40);
     if(this.levelToLoad === createdLevel){
         button(width-100, 35, 50, 30, 2, color(9, 116, 224), "Quit", 20, function(){
@@ -140,7 +140,7 @@ world.init = function(){
     scene = "game";
 }
 world.death = function(){
-    if(this.levelToLoad !== createdLevel) worldMap.lives --;
+    if(this.levelToLoad !== createdLevel&&this.returnDest !== "communitylevels") worldMap.lives --;
     this.deathWait = 1;
     this.player.canMove = false;
     stopMusic();

@@ -25,7 +25,7 @@ communityLevels.run = function(){
     if(this.levels === undefined){
         push();
         fill(0, 0, 0);
-        textSize(50);
+        textSize(40);
         textAlign(CENTER, CENTER);
         text("Loading...", width/2, height/2);
         pop();

@@ -37,6 +37,8 @@ Shell.prototype.collide = function(p){
             if(this.y+this.h/2-1-yvel>w.y&&this.y-this.h/2+1+yvel<w.y+w.h){
     			if(this.x-this.w/2<w.x||this.x+this.w/2>w.x+w.w){
     				this.speed *= -1;
+                    if(this.x-this.w/2<w.x) this.x = w.x-this.w/2-1;
+                    if(this.x+this.w/2>w.x+w.w) this.x = w.x+w.w+this.w/2+1;
     			}
     		}
         }
