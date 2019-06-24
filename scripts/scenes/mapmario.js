@@ -30,7 +30,7 @@ MapMario.prototype.update = function(){
     }
 }
 MapMario.prototype.control = function(){
-    if(keys[RIGHT_ARROW]||keys.d){
+    if((keys[RIGHT_ARROW]||keys.d)&&this.x+50<=(worldMap.levelsCleared+1) * 75 + 75){
         if(this.x+50<=(worldMap.spaces.length-1) * 75 + 75){
             this.xvel = 3;
             this.moving = true;

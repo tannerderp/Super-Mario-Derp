@@ -2,6 +2,7 @@ let worldMap = {
     levels: [],
     lives: 5,
     marioX: 95,
+    levelsCleared: 0,
 }
 $.getJSON("/scripts/game/levels.json", function(json){
     worldMap.levels = json.levels;

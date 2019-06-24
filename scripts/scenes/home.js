@@ -4,7 +4,7 @@ function home(){
     imageMode(CENTER);
     image(imgs.logo, width/2, 50, width-10, ((width-10)/imgs.logo.width)*imgs.logo.height);
     pop();
-    button(width/2, height/2-75, 150, 50, 2, color(216, 22, 19), "Play", 30, function(){
+    button(width/2, height/2-75, 150, 50, 2, color(216, 22, 19), "Story Mode", 25, function(){
         world.levelToLoad = world.levels[0];
         world.returnDest = "worldmapinit";
         scene = "worldmapinit";
