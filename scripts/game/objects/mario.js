@@ -15,6 +15,7 @@ function Mario(x, y){
     this.img = imgs.mario.walk[0];
     this.x += 24;
     this.y += 14;
+    this.deathAnimation = false;
 }
 Mario.prototype.run = function(){
     this.update();
@@ -22,6 +23,7 @@ Mario.prototype.run = function(){
         this.control();
     }
     if(this.show){
+        if(this.deathAnimation) this.img = imgs.mario.death;
         this.display();
     }
     this.grounded = false;
@@ -130,6 +132,8 @@ Mario.prototype.update = function(){
         }
     }
     if((this.health<1 || this.y-this.h/2>(world.map.length*47))&&world.deathWait === 0&&!world.levelComplete){
+        this.show = true;
+        this.hurt = true;
         world.death();
     }
 }
@@ -159,6 +163,7 @@ Mario.prototype.display = function(){
     translate(this.x, this.y);
     scale(this.direction, 1);
     scale(1.166666667);
+    if(this.deathAnimation) scale((imgs.mario.walk[0].width * 1.166666667)/imgs.mario.death.width)
     imageMode(CENTER);
     image(this.img, 0, 0);
     pop();

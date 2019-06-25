@@ -12,7 +12,7 @@ function Ground(x, y){
 Ground.prototype.run = function(p){
     this.showTop = true;
     this.display();
-    this.collide(p);
+    if(!world.player.deathAnimation) this.collide(p);
 }
 Ground.prototype.collide = function(p){
     let xvel = abs(p.xvel);

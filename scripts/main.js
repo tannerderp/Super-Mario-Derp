@@ -1,4 +1,4 @@
-let scene = "home", smallest, nameBox, creatorBox, inEditor;
+let scene = "opening", smallest, nameBox, creatorBox, inEditor;
 function setup(){
     smallest = min(windowWidth, windowHeight);
     let canvas = createCanvas(smallest, smallest);

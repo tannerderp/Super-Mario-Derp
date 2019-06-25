@@ -12,6 +12,7 @@ function preload(){
     }
     imgs.mario.jump = loadImage("/sprites/mario/BSMW4.png");
     imgs.mario.fall = loadImage("/sprites/mario/BSMW5.png");
+    imgs.mario.death = loadImage("/sprites/mario/death.png");
     imgs.goomba = {};
     imgs.goomba.idle = loadImage("/sprites/goomba/Goomba.png");
     imgs.goomba.dead = loadImage("/sprites/goomba/Dead Goomba.png");
@@ -44,6 +45,12 @@ function preload(){
     for(var i = 0; i<2; i++){
         imgs.bridge[i] = loadImage("/sprites/bridge/"+i+".png");
     }
+    imgs.lava = {};
+    imgs.lava.top = Array(5);
+    for(var i = 0; i<5; i++){
+        imgs.lava.top[i] = loadImage("/sprites/lava/"+i+".png");
+    }
+    imgs.lava.bottom = loadImage("/sprites/lava/5.png");
     imgs.mushroom = loadImage("/sprites/mushroom.png");
     imgs.coin = loadImage("/sprites/coin.png");
     imgs.pipe = {};

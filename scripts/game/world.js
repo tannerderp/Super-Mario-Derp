@@ -72,6 +72,8 @@ world.getObject = function(character){
         case "?": return ItemBlock; break;
         case "&": return MushroomItemBlock; break;
         case "b": return NoteBlock; break;
+        case "+": return Lava; break;
+        case "*": return LavaBottom; break;
         case "F": return FlagPole; break; //f in the chat
         case "M": return "player"; break;
         case "m": return ["item", Mushroom]; break;
@@ -145,6 +147,10 @@ world.death = function(){
     this.deathWait = 1;
     this.player.canMove = false;
     stopMusic();
+    if(this.player.y-this.player.h/2<(this.map.length*47)){
+        this.player.deathAnimation = true;
+        this.player.yvel = -12;
+    }
     sounds.mario.death.play();
 }
 world.getMusicPath = function(num){
