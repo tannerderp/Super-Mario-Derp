@@ -78,6 +78,10 @@ objectMenu.init = function(){
         if(this.blocks[i].x>=400){
             this.blocks[i].x = 100*i - 400;
             this.blocks[i].y = height/2+60;
+            if(this.blocks[i].x>=400){
+                this.blocks[i].x = 100*i - 800;
+                this.blocks[i].y = height/2+120;
+            }
         }
     }
     this.objects = [];
