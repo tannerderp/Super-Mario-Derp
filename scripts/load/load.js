@@ -40,6 +40,10 @@ function preload(){
         imgs.itemBlock.idle[i] = loadImage("/sprites/Item Block/Item Block"+(i+1)+".png");
     }
     imgs.itemBlock.hit = loadImage("/sprites/Item Block/Item Block Hit.png");
+    imgs.bridge = Array(2);
+    for(var i = 0; i<2; i++){
+        imgs.bridge[i] = loadImage("/sprites/bridge/"+i+".png");
+    }
     imgs.mushroom = loadImage("/sprites/mushroom.png");
     imgs.coin = loadImage("/sprites/coin.png");
     imgs.pipe = {};
@@ -86,7 +90,11 @@ function preload(){
     for(var i= 0; i<2; i++){
         music.castle[i] = loadSound("/sounds/music/castle/"+i+".mp3");
     }
-    music.total = 3;
+    music.athletic = Array(2);
+    for(var i = 0; i<2; i++){
+        music.athletic[i] = loadSound("/sounds/music/athletic/"+i+".mp3");
+    }
+    music.total = 4;
     music.worldMap = loadSound("/sounds/music/world map.mp3");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");

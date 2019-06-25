@@ -65,6 +65,7 @@ world.run = function(){
 world.getObject = function(character){
     switch(character){
         case "#": return Ground; break;
+        case "_": return Platform; break;
         case "=": return Pipe; break;
         case "|": return PipeBottom; break;
         case "%": return Brick; break;
@@ -151,6 +152,7 @@ world.getMusicPath = function(num){
         case 0: return music.overworld; break;
         case 1: return music.underground; break;
         case 2: return music.castle; break;
+        case 3: return music.athletic; break;
     }
 }
 function isFunction(functionToCheck) {

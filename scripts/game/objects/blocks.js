@@ -189,6 +189,40 @@ NoteBlock.prototype.display = function(){
 NoteBlock.prototype.topCollide = function(p){
     p.grounded = false;
     p.y --;
-    p.yvel = -12;
+    p.yvel = -14;
+}
+}
+//platform
+{
+function Platform(x, y){
+    Ground.call(this, x, y);
+    this.h = (48/imgs.bridge[0].width)*imgs.bridge[0].height;
+}
+Platform.prototype = Object.create(Ground.prototype);
+Platform.prototype.display = function(){
+    push();
+    imageMode(LEFT);
+    translate(this.x, this.y);
+    image(imgs.bridge[0], 0, 0, this.w, this.h);
+    push();
+    translate(0, -this.h);
+    scale(48/imgs.bridge[0].width);
+    image(imgs.bridge[1], 0, 0);
+    pop();
+    pop();
+}
+Platform.prototype.collide = function(p){
+    let xvel = abs(p.xvel);
+    let yvel = abs(p.yvel);
+    if(p.x+p.w/2>this.x&&p.x-p.w/2<this.x+this.w&&p.y+p.h/2>this.y&&p.y-p.h/2<this.y+1+yvel&&p.yvel>0){
+        if(p.x+p.w/2-xvel-1>this.x&&p.x-p.w/2+xvel+1<this.x+this.w){
+			if(p.y-p.h/2<this.y&&p.y+p.h/2<this.y+this.h){
+				p.y = this.y-p.h/2;
+                p.yvel = 0;
+                p.grounded = true;
+                if(this.topCollide) this.topCollide(p);
+			}
+		}
+    }
 }
 }

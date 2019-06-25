@@ -55,10 +55,10 @@ Shell.prototype.collide = function(p){
             if(this.speed === 0){
                 sounds.kick.play();
                 if(p.x<this.x){
-                    this.speed = 5;
+                    this.speed = 6;
                     this.x = p.x+p.w/2+this.w/2+1;
                 } else{
-                    this.speed = -5;
+                    this.speed = -6;
                     this.x = p.x-p.w/2-this.w/2-1;
                 }
             } else{
