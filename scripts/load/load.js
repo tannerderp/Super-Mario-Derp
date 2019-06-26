@@ -13,6 +13,7 @@ function preload(){
     imgs.mario.jump = loadImage("/sprites/mario/BSMW4.png");
     imgs.mario.fall = loadImage("/sprites/mario/BSMW5.png");
     imgs.mario.death = loadImage("/sprites/mario/death.png");
+    imgs.mario.duck = loadImage("/sprites/mario/duck.png");
     imgs.goomba = {};
     imgs.goomba.idle = loadImage("/sprites/goomba/Goomba.png");
     imgs.goomba.dead = loadImage("/sprites/goomba/Dead Goomba.png");
@@ -21,7 +22,7 @@ function preload(){
     for(var i = 0; i<2; i++){
         imgs.koopa.idle[i] = loadImage("/sprites/koopa/koopa"+(i+1)+".png");
     }
-    imgs.koopa.shell = loadImage("/sprites/koopa/koopa shell.png");
+    imgs.koopa.shell = loadImage("/sprites/koopa/0.png");
     imgs.redKoopa = {};
     imgs.redKoopa.idle = Array(2);
     for(var i = 0; i<2; i++){

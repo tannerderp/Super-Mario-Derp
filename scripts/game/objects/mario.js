@@ -16,6 +16,7 @@ function Mario(x, y){
     this.x += 24;
     this.y += 14;
     this.deathAnimation = false;
+    this.ducking = false;
 }
 Mario.prototype.run = function(){
     this.update();
@@ -111,6 +112,12 @@ Mario.prototype.update = function(){
     } else{
         this.img = imgs.mario.walk[round(this.frame/2)];
     }
+    if(this.ducking){
+        this.img = imgs.mario.duck;
+        this.h = imgs.mario.duck.height*((imgs.mario.walk[0].width * 1.166666667)/imgs.mario.duck.width);
+    } else{
+        this.h = 65.3333333333;
+    }
     if(!this.grounded) this.yvel += 0.225;
     this.y += this.yvel;
     this.yvel = constrain(this.yvel, -10, 8);
@@ -139,18 +146,23 @@ Mario.prototype.update = function(){
 }
 Mario.prototype.control = function(){
     this.running = false;
+    this.ducking = false;
     if(keys.z || keys[32] || keys.x){
         this.running = true;
     }
-    if(keys[RIGHT_ARROW]||keys.d){
-        this.xvel += 0.45;
-        if(this.running) this.xvel += 0.175;
-        this.direction = 1;
-    }
-    if(keys[LEFT_ARROW]||keys.a){
-        this.xvel -= 0.45;
-        if(this.running) this.xvel -= 0.175;
-        this.direction = -1;
+    if(keys[DOWN_ARROW]||keys.s){
+        this.ducking = true;
+    } else{
+        if(keys[RIGHT_ARROW]||keys.d){
+            this.xvel += 0.45;
+            if(this.running) this.xvel += 0.175;
+            this.direction = 1;
+        }
+        if(keys[LEFT_ARROW]||keys.a){
+            this.xvel -= 0.45;
+            if(this.running) this.xvel -= 0.175;
+            this.direction = -1;
+        }
     }
     if((keys[UP_ARROW]||keys.w)&&this.grounded){
         this.y --;
@@ -163,7 +175,8 @@ Mario.prototype.display = function(){
     translate(this.x, this.y);
     scale(this.direction, 1);
     scale(1.166666667);
-    if(this.deathAnimation) scale((imgs.mario.walk[0].width * 1.166666667)/imgs.mario.death.width)
+    if(this.deathAnimation) scale((imgs.mario.walk[0].width * 1.166666667)/imgs.mario.death.width);
+    if(this.ducking&&this.img===imgs.mario.duck) scale((imgs.mario.walk[0].width * 1.166666667)/imgs.mario.duck.width);
     imageMode(CENTER);
     image(this.img, 0, 0);
     pop();
