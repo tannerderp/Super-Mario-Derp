@@ -34,6 +34,13 @@ function preload(){
     for(var i = 0; i<2; i++){
         imgs.paraTroopa.idle[i] = loadImage("/sprites/koopa/paratroopa/"+i+".png");
     }
+    imgs.boomBoom = {};
+    imgs.boomBoom.move = Array(5);
+    for(var i = 0; i<5; i++){
+        imgs.boomBoom.move[i] = loadImage("/sprites/boom boom/"+i+".png");
+    }
+    imgs.boomBoom.hurt = loadImage("/sprites/boom boom/6.png");
+    imgs.boomBoom.shell = loadImage("/sprites/boom boom/5.png");
     imgs.brick = loadImage("/sprites/Brick Block.PNG");
     imgs.noteBlock = loadImage("/sprites/note block.png")
     imgs.itemBlock = {};
@@ -104,6 +111,7 @@ function preload(){
     }
     music.total = 4;
     music.worldMap = loadSound("/sounds/music/world map.mp3");
+    music.beatBoss = loadSound("/sounds/music/beat boss.wav");
     //load fonts
     fonts.mario = loadFont("/fonts/SuperMario256.ttf");
 }

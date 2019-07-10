@@ -24,6 +24,13 @@ world.run = function(){
             scene = this.returnDest;
         }
     }
+    if(this.beatBossWait>0){
+        this.beatBossWait ++;
+        if(this.beatBossWait>music.beatBoss.duration() * 60){
+            scene = this.returnDest;
+            if(this.returnDest === "worldmapinit") worldMap.levelsCleared ++;
+        }
+    }
     if(this.player.x>this.levelLength-this.screenWidth/2){
         translate((-this.levelLength+this.screenWidth)*this.size, 0);
     }else if(this.player.x>this.screenWidth/2){
@@ -84,6 +91,7 @@ world.getObject = function(character){
         case "R": return ["enemy", RedKoopa]; break;
         case "p": return ["enemy", ParaTroopa]; break;
         case "S": return ["enemy", Shell]; break;
+        case "B": return ["enemy", BoomBoom]; break;
         default: return null; break;
     }
 }
@@ -138,6 +146,7 @@ world.displayBackground = function(levelLength, levelHeight, size){
 }
 world.init = function(){
     this.deathWait = 0;
+    this.beatBossWait = 0;
     this.levelComplete = false;
     this.load(this.levelToLoad);
     scene = "game";
@@ -169,4 +178,10 @@ function stopMusic(){
         if(isFunction(world.music[0].stop())) world.music[0].stop();
     }
     world.music[1].stop(); //for some reason I can't stop the music inside of the world object. weird piss
+}
+world.beatBoss = function(){
+    this.player.canMove = false;
+    this.beatBossWait = 1;
+    stopMusic();
+    music.beatBoss.play();
 }

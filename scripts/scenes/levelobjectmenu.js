@@ -1,6 +1,6 @@
 let objectMenu = {
     blocksKey: ["#", "_", "=", "|", "%", "?", "&", "b", "F", "+", "*"],
-    objectsKey: ["m", "C", "P", "G", "K", "R", "p", "S", "M"],
+    objectsKey: ["m", "C", "P", "G", "K", "R", "p", "S", "M", "B"],
     page: "blocks",
 }
 objectMenu.run = function(){
@@ -93,9 +93,13 @@ objectMenu.init = function(){
             if(this.objects[i].x>=400){
                 this.objects[i].x = 100*i - 400+30;
                 this.objects[i].y = height/2+60;
+                if(this.objects[i].x>=400){
+                    this.objects[i].x = 100*i - 800;
+                    this.objects[i].y = height/2+120;
+                }
             }
         } else{
-            this.objects.push(new Mario(30, height/2+120));
+            this.objects.push(new Mario(10, height/2+120));
         }
     }
     scene = "objectmenu";
