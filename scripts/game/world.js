@@ -152,15 +152,17 @@ world.init = function(){
     scene = "game";
 }
 world.death = function(){
-    if(this.levelToLoad !== createdLevel&&this.returnDest !== "communitylevels") worldMap.lives --;
-    this.deathWait = 1;
-    this.player.canMove = false;
-    stopMusic();
-    if(this.player.y-this.player.h/2<(this.map.length*47)){
-        this.player.deathAnimation = true;
-        this.player.yvel = -12;
+    if(this.beatBossWait === 0){
+        if(this.levelToLoad !== createdLevel&&this.returnDest !== "communitylevels") worldMap.lives --;
+        this.deathWait = 1;
+        this.player.canMove = false;
+        stopMusic();
+        if(this.player.y-this.player.h/2<(this.map.length*47)){
+            this.player.deathAnimation = true;
+            this.player.yvel = -12;
+        }
+        sounds.mario.death.play();
     }
-    sounds.mario.death.play();
 }
 world.getMusicPath = function(num){
     switch(num){
