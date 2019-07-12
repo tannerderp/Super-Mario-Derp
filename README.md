@@ -4,7 +4,7 @@ WIP Mario game being created using the p5 javascript library
 - [x] main menu
 - [x] basic mario objects and enemies
 - [x] level editor
-- [ ] sharing levels online
+- [x] sharing levels online
 - [ ] completed main story levels (I will design more objects and blocks for those levels)
 # how to play
 arrow keys or wasd - move and jump\
