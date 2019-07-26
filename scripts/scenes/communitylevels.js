@@ -43,6 +43,7 @@ function getCommunityLevels(){
         console.log("Failed to get Levels");
     });
 }
+getCommunityLevels();
 function communityLevelButton(x, y, level){
     push();
     rectMode(CENTER);

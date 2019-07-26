@@ -58,6 +58,7 @@ levelEditor.run = function(){
     if(this.placedMario){
         this.runButton(width-45, 15);
     }
+    this.editButton(width-75, 15);
 }
 String.prototype.replaceAt=function(index, char) {
     var a = this.split("");
@@ -138,6 +139,21 @@ levelEditor.runButton = function(x, y){
         }
     }
 }
+levelEditor.editButton = function(x, y){
+    push();
+    imageMode(CENTER);
+    image(imgs.editor.edit, x, y, 20, 20);
+    pop();
+    if(mouseX>x-10&&mouseX<x+10&&mouseY>y-10&&mouseY<y+10){
+        cursor(HAND);
+        nameBox.value(createdLevel.name);
+        creatorBox.value(createdLevel.creator);
+        if(clicked){
+            this.erase();
+            scene = "editLevel";
+        }
+    }
+}
 levelEditor.control = function(){
     this.scroll = constrain(this.scroll, this.screenWidth/2, this.levelLength-this.screenWidth/2);
     if(keys[RIGHT_ARROW]||keys.d){
@@ -210,4 +226,5 @@ levelEditor.reload = function(){
             }
         }
     }
+    localStorage["createdLevel"] = JSON.stringify(createdLevel);
 }

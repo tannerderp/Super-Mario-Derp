@@ -78,6 +78,8 @@ function preload(){
     for(var i = 0; i<2; i++){
         imgs.worldMap.mario[i] = loadImage("/sprites/world map/mario"+i+".png");
     }
+    imgs.editor = {};
+    imgs.editor.edit = loadImage("/sprites/editor/editor.png");
     //load sounds
     soundFormats('mp3', 'wav');
     sounds.mario = {};
@@ -159,5 +161,9 @@ let createdLevel = {
     groundColor: [175, 118, 10],
     topGroundColor: [57, 175, 14],
     created: false,
+}
+if(localStorage["createdLevel"] !== null && localStorage["createdLevel"] !== "nothin"){
+    createdLevel = JSON.parse(localStorage["createdLevel"]);
+    console.log(createdLevel)
 }
 scene = "gameLoad";

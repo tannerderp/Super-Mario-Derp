@@ -39,6 +39,7 @@ function draw(){
         case"worldmap":worldMap.run();break;
         case"communitylevels":communityLevels.run();break;
         case"communitylevelsinit":communityLevels.init();break;
+        case"editLevel":editLevel();break;
     }
     pop();
     clicked = false;

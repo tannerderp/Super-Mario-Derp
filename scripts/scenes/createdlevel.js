@@ -7,14 +7,22 @@ function CreatedLevel(){
     textAlign(CENTER);
     text("Created Level", width/2, 35);
     pop();
+    push();
+    textSize(30);
+    textAlign(CENTER);
+    fill(0, 0, 0);
+    text(createdLevel.name, width/2, 70);
+    pop();
     button(width/2, height/2-90, 150, 50, 2, color(9, 116, 224), "Play", 30, function(){
         world.levelToLoad = createdLevel;
         scene = "gameLoad";
     });
     button(width/2, height/2-30, 150, 50, 2, color(9, 116, 224), "Edit", 30, function(){
+        inEditor = true;
         scene = "leveleditorinit";
     });
     button(width/2, height/2+30, 150, 50, 2, color(9, 116, 224), "Delete", 30, function(){
+        localStorage["createdLevel"] = "nothin";
         createdLevel = {
             map: [
                 "                                                ",
