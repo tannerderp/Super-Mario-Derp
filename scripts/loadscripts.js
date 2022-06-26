@@ -16,6 +16,6 @@ function loadScript(url, callback) {
     body.appendChild(script);
 };
 for(var i in scripts){
-    loadScript("/scripts"+scripts[i]+".js");
+    loadScript("scripts"+scripts[i]+".js");
 }
-loadScript("/scripts/main.js");
+loadScript("scripts/main.js");
