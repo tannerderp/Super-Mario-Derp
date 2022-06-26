@@ -1,7 +1,7 @@
 let worldMap = {
     levels: [],
     lives: 5,
-    marioX: 95,
+    marioX: 20,
     levelsCleared: 0,
 }
 $.getJSON("/Super-Mario-Derp/scripts/game/levels.json", function(json){

@@ -30,8 +30,8 @@ MapMario.prototype.update = function(){
     }
 }
 MapMario.prototype.control = function(){
-    if((keys[RIGHT_ARROW]||keys.d)&&this.x+50<=(worldMap.levelsCleared+1) * 75 + 75){
-        if(this.x+50<=(worldMap.spaces.length-1) * 75 + 75){
+    if((keys[RIGHT_ARROW]||keys.d)&&this.x+50<=(worldMap.levelsCleared+1) * 75){
+        if(this.x+50<=(worldMap.spaces.length-1) * 75){
             this.xvel = 3;
             this.moving = true;
             this.destX = this.x+75;
@@ -44,7 +44,7 @@ MapMario.prototype.control = function(){
             this.destX = this.x-75;
         }
     }
-    if(keys[32] && this.x !== 95){
+    if(keys[32] && this.x !== 20){
         this.collide();
         music.worldMap.stop();
         worldMap.marioX = this.x;
@@ -54,7 +54,7 @@ MapMario.prototype.control = function(){
 MapMario.prototype.collide = function(){
     for(var i = 0; i<worldMap.spaces.length; i++){
         if(i !== 0){
-            let x = i * 75+75;
+            let x = i * 75;
             if(this.x+this.w/2>x&&this.x-this.w/2<x + 40){
                 world.levelToLoad = world.levels[i-1];
             }
