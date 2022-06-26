@@ -3,7 +3,7 @@ let world = {
     levels: [],
     objects: [],
 }
-$.getJSON("/scripts/game/levels.json", function(json){
+$.getJSON("scripts/game/levels.json", function(json){
     world.levels = json.levels;
 })
 world.run = function(){
