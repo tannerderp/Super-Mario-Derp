@@ -1,5 +1,6 @@
 let communityLevels = {
     levels: undefined,
+    failed: false
 }
 communityLevels.run = function(){
     background(164, 194, 242);
@@ -27,7 +28,11 @@ communityLevels.run = function(){
         fill(0, 0, 0);
         textSize(40);
         textAlign(CENTER, CENTER);
-        text("Loading...", width/2, height/2);
+        if(this.failed == true){
+            text("Unable to load levels :(", width/2, height/2);
+        } else{
+            text("Loading...", width/2, height/2);
+        }
         pop();
     }
 }
@@ -41,6 +46,8 @@ function getCommunityLevels(){
         console.log(communityLevels.levels);
     }).catch(function(){
         console.log("Failed to get Levels");
+        this.failed = true;
+        console.log(this.failed);
     });
 }
 //getCommunityLevels();

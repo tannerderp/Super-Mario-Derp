@@ -4,7 +4,7 @@ let worldMap = {
     marioX: 95,
     levelsCleared: 0,
 }
-$.getJSON("/scripts/game/levels.json", function(json){
+$.getJSON("/Super-Mario-Derp/scripts/game/levels.json", function(json){
     worldMap.levels = json.levels;
 });
 worldMap.run = function(){
@@ -14,13 +14,13 @@ worldMap.run = function(){
             push();
             noStroke();
             fill(31, 74, 142);
-            rect(i * 75+75, height/2-20, 40, 40);
+            rect(i * 75, height/2-20, 40, 40);
             fill(0, 0, 0);
-            rect(i * 75 + 75, height/2-20, 15, 15);
+            rect(i * 75, height/2-20, 15, 15);
             fill(255, 255, 255);
             textSize(10);
             textAlign(CENTER)
-            text(i, i * 75 + 75 + 7.5, height/2-10);
+            text(i, i * 75 + 7.5, height/2-10);
             pop();
         }
     }
